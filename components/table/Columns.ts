@@ -5,8 +5,8 @@ export type Column = {
 
 export const baseBuyColumns: Column[] = [
   { key: "id", label: "ID" },
-  { key: "product_img", label: "Product Image" },
-  { key: "product_name", label: "Product Name" },
+  { key: "product", label: "Product" },
+  { key: "buyer", label: "Buyers" },
   { key: "price", label: "Price" },
   { key: "status", label: "Status" },
   { key: "date", label: "Date" },
@@ -14,7 +14,6 @@ export const baseBuyColumns: Column[] = [
 
 export const singleBuyColumns: Column[] = [
   ...baseBuyColumns,
-  { key: "buyer_count", label: "Buyer Count" },
 ];
 
 

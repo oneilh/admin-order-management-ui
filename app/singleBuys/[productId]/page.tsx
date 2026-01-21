@@ -1,4 +1,4 @@
-import ProductDetails from "@/components/features/productDetails/ProductDetails";
+import ProductDetails from "@/components/productDetails/ProductDetails";
 
 const ProductPage = async ({
   params,
