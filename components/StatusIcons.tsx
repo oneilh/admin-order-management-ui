@@ -5,7 +5,7 @@ import { PiPackageDuotone } from "react-icons/pi";
 import { RiProgress8Line } from "react-icons/ri";
 import { TbPackageImport, TbPackageOff } from "react-icons/tb";
 
-const statusIcon = {
+export const statusIcon = {
   active: <RiProgress8Line />,
   completed: <IoCheckmarkDoneCircle />,
   delivered: <MdLocalShipping className="text-lg" />,

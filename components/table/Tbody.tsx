@@ -1,7 +1,8 @@
 "use client";
 
-import { Badge } from "@mantine/core";
 import { useRouter } from "next/navigation";
+import BadgeComponent from "../BadgeComponent";
+import Product from "../Product";
 
 type TbodyProps = {
   data?: Record<string, any>[];
@@ -25,28 +26,12 @@ const Tbody = ({ data = [], showStatus = false }: TbodyProps) => {
         >
           <td>#{item.id}</td>
 
-          <td>
-            <div className="flex items-center gap-3">
-              <div className="avatar">
-                <div className="mask mask-squircle h-12 w-12">
-                  <img
-                    src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                    alt="Product"
-                  />
-                </div>
-              </div>
-              <div className="font-bold">{item.product_name}</div>
-            </div>
-          </td>
+          <Product item={item} />
 
           <td>{item.buyer_count}</td>
           <td>{item.price}</td>
 
-          {showStatus && (
-            <td>
-              <Badge>{item.status}</Badge>
-            </td>
-          )}
+          {!showStatus && <BadgeComponent item={item} />}
 
           <td>{item.date}</td>
         </tr>

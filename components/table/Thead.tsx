@@ -6,7 +6,7 @@ type TheadProps = {
 };
 
 const Thead = ({ columns, showStatus = false }: TheadProps) => {
-  const visibleColumns = showStatus
+  const visibleColumns = !showStatus
     ? columns
     : columns.filter((column) => column.key !== "status");
 
