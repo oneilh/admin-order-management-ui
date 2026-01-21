@@ -1,7 +1,7 @@
 import { Badge } from "@mantine/core";
 import { statusIcon } from "./StatusIcons";
 
-const BadgeComponent = ({item}:Record<string, any>) => {
+const OrderStatusBadge = ({item}:Record<string, any>) => {
   return (
     <td>
       {item.status.toLowerCase() == "active" ? (
@@ -17,4 +17,4 @@ const BadgeComponent = ({item}:Record<string, any>) => {
   );
 };
 
-export default BadgeComponent;
+export default OrderStatusBadge;

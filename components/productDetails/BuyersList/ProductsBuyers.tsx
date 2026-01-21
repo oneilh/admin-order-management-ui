@@ -1,4 +1,9 @@
+import { singleBuyData } from "@/components/table/buysData";
+import { singleBuyColumns } from "@/components/table/Columns";
+import Table from "@/components/table/Table";
+
 const ProductsBuyers = () => {
+    const allOrders = singleBuyData.map((item) => item);
   return (
     <section className="product-buyers h-full flex flex-col bg-white border border-gray-300 rounded-lg overflow-hidden shadow-sm">
       {/* Header */}
@@ -84,6 +89,7 @@ const ProductsBuyers = () => {
             </tr>
           </tbody>
         </table>
+       <Table columns={singleBuyColumns} data={allOrders} showStatus />
       </div>
 
       {/* Pagination */}

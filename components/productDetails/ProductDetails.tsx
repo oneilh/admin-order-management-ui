@@ -1,12 +1,12 @@
-import ProductDetail from "./ProductDetail";
-import ProductsBuyers from "./ProductsBuyers";
-import ProductStats from "./ProductStats";
+import ProductSummaryCard from "./ProductSummary/ProductSummaryCard";
+import ProductsBuyers from "./BuyersList/ProductsBuyers";
+import ProductStats from "./ProductStats/ProductStats";
 
 const ProductDetails = ({ productId }: { productId: string }) => {
   const ID = productId;
   return (
     <section className="product-details-container">
-      <ProductDetail />
+      <ProductSummaryCard />
       <ProductStats />
       <ProductsBuyers />
     </section>

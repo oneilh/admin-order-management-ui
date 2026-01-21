@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import BadgeComponent from "../BadgeComponent";
+import OrderStatusBadge from "../OrderStatusBadge";
 import Product from "../Product";
 
 type TbodyProps = {
@@ -31,7 +31,7 @@ const Tbody = ({ data = [], showStatus = false }: TbodyProps) => {
           <td>{item.buyer_count}</td>
           <td>{item.price}</td>
 
-          {!showStatus && <BadgeComponent item={item} />}
+          {!showStatus && <OrderStatusBadge item={item} />}
 
           <td>{item.date}</td>
         </tr>
