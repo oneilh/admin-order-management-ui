@@ -1,17 +1,17 @@
 import { Column } from "./Columns";
-import Tbody from "./Tbody";
 import Thead from "./Thead";
+import { ReactNode } from "react";
 
 export type TableProps = {
   columns: Column[];
-  data: Record<string, any>[];
+  children: ReactNode;
 };
-const Table = ({ columns, data}: TableProps) => {
+const Table = ({ columns, children }: TableProps) => {
   return (
     <section className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
       <table className="table">
-        <Thead columns={columns}  />
-        <Tbody data={data} />
+        <Thead columns={columns} />
+        <tbody>{children}</tbody>
       </table>
     </section>
   );

@@ -1,22 +1,20 @@
-"use client";
-
+'use client'
+import OrderStatusBadge from "@/components/OrderStatusBadge";
+import Product from "@/components/Product";
 import { useRouter } from "next/navigation";
-import OrderStatusBadge from "../../OrderStatusBadge";
-import Product from "../../Product";
-
-type TbodyProps = {
+type RowDataProps = {
   data?: Record<string, any>[];
 };
 
-const Tbody = ({ data = [] }: TbodyProps) => {
+
+const SingleBuyTableRows = ({ data = [] }: RowDataProps) => {
   const router = useRouter();
 
   const goToPage = (id: string) => {
     router.push(`./singleBuys/${id}`);
   };
-
   return (
-    <tbody>
+    <>
       {data.map((item) => (
         <tr
           key={item.id}
@@ -31,8 +29,8 @@ const Tbody = ({ data = [] }: TbodyProps) => {
           <td>{item.created_at}</td>
         </tr>
       ))}
-    </tbody>
+    </>
   );
 };
 
-export default Tbody;
+export default SingleBuyTableRows;

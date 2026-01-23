@@ -4,6 +4,7 @@ import ProductStats from "./ProductStats/ProductStats";
 import { singleBuyData } from "@/data/buy";
 import { ProductIDPropType } from "@/Types/productTypes";
 import { OrderType } from "@/Types/singleOrder";
+import SingleBuyProductDetail from "@/app/singleBuys/[productId]/SingleBuyProductDetail";
 
 const ProductDetails = ({ productId }: ProductIDPropType) => {
   const ID = Number(productId);
@@ -32,9 +33,11 @@ const ProductDetails = ({ productId }: ProductIDPropType) => {
 
   return (
     <section className="product-details-container">
-      <ProductSummaryCard {...{ id, product_name, price, description }} />
+      {/* <ProductSummaryCard {...{ id, product_name, price, description }} />
       <ProductStats {...{ no_of_buyers, created_at, overall_status }} />
-      <ProductsBuyers {...{ buyers }} />
+      <ProductsBuyers {...{ buyers }} /> */}
+
+      <SingleBuyProductDetail {...{ productId }} />
     </section>
   );
 };

@@ -5,7 +5,7 @@ import { OrderType } from "@/Types/singleOrder";
 
 const BuyersList = ({buyers}:OrderType) => {
   const allOrders = singleBuyData.map((item) => item);
-  return <Table columns={singleBuyersColumns} data={allOrders} showStatus />;
+  return <Table columns={singleBuyersColumns} data={allOrders}/>;
 };
 
 export default BuyersList;
