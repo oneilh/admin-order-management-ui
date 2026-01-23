@@ -6,10 +6,9 @@ import Product from "../../Product";
 
 type TbodyProps = {
   data?: Record<string, any>[];
-  showStatus?: boolean;
 };
 
-const Tbody = ({ data = [], showStatus = false }: TbodyProps) => {
+const Tbody = ({ data = [] }: TbodyProps) => {
   const router = useRouter();
 
   const goToPage = (id: string) => {
@@ -25,14 +24,10 @@ const Tbody = ({ data = [], showStatus = false }: TbodyProps) => {
           className="cursor-pointer hover:bg-base-300"
         >
           <td>#{item.id}</td>
-
           <Product item={item} />
-
           <td>{item.no_of_buyers}</td>
           <td>{item.price}</td>
-
-          {!showStatus && <OrderStatusBadge item={item} />}
-
+          <OrderStatusBadge item={item} />
           <td>{item.created_at}</td>
         </tr>
       ))}
