@@ -1,17 +1,11 @@
-import { singleBuyData } from "@/components/table/buysData";
-import { singleBuyColumns } from "@/components/table/Columns";
-import Table from "@/components/table/Table";
+import { singleBuyColumns } from "@/components/Layout/table/Columns";
+import Table from "@/components/Layout/table/Table";
+import { singleBuyData } from "@/data/buy";
 
-const ProductsBuyers = () => {
-    const allOrders = singleBuyData.map((item) => item);
+const table2 = () => {
+  const allOrders = singleBuyData.map((item) => item);
   return (
-    <section className="product-buyers h-full flex flex-col bg-white border border-gray-300 rounded-lg overflow-hidden shadow-sm">
-      {/* Header */}
-      <div className="px-6 py-4 border-b border-gray-300 shrink-0 bg-white">
-        <h3 className="text-lg font-bold text-gray-900">Recent Buyers</h3>
-      </div>
-
-      {/* Table Body */}
+    <div>
       <div className="flex-1 overflow-auto">
         <table className="w-full text-left text-sm text-gray-700">
           <thead className="bg-gray-100 text-sm font-bold text-gray-600 sticky top-0 border-b border-gray-300">
@@ -89,25 +83,10 @@ const ProductsBuyers = () => {
             </tr>
           </tbody>
         </table>
-       <Table columns={singleBuyColumns} data={allOrders} showStatus />
+        <Table columns={singleBuyColumns} data={allOrders} showStatus />
       </div>
-
-      {/* Pagination */}
-      <div className="px-6 py-4 border-t border-gray-300 bg-gray-50 shrink-0 flex items-center justify-between">
-        <span className="text-sm text-gray-600">
-          Showing <b>1-4</b> of <b>42</b>
-        </span>
-        <div className="flex gap-2">
-          <button className="px-4 py-2 text-sm font-bold text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-100 disabled:opacity-50">
-            Previous
-          </button>
-          <button className="px-4 py-2 text-sm font-bold text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-100">
-            Next
-          </button>
-        </div>
-      </div>
-    </section>
+    </div>
   );
 };
 
-export default ProductsBuyers;
+export default table2;

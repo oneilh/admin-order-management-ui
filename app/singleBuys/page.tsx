@@ -1,11 +1,12 @@
 import TabsComponent from "@/components/TabsComponent";
-import BuysHeader from "../../components/BuysHeader";
+import TitleHeader from "../../components/TitleHeader";
+
 
 
 const SingleBuyPage = () => {
   return (
     <section className="flex flex-col gap-4">
-      <BuysHeader />
+      <TitleHeader />
       <TabsComponent />
     </section>
   );

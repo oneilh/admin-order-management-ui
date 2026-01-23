@@ -1,6 +1,6 @@
-import React from "react";
+import { OrderType } from "@/Types/singleOrder";
 
-const ProductHeader = () => {
+const ProductHeader = ({ id, product_name, price }: OrderType) => {
   // Header: Title & Price
   return (
     <div className="flex justify-between items-start gap-4 shrink-0">
@@ -13,11 +13,9 @@ const ProductHeader = () => {
         {/* Title & ID */}
         <div className="flex flex-col gap-1">
           <h3 className="text-xl font-bold text-gray-900 leading-tight">
-            Wind Blower Machine
+            {product_name}
           </h3>
-          <span className="text-sm text-gray-500 font-medium">
-            ID: #PROD-8821-X
-          </span>
+          <span className="text-sm text-gray-500 font-medium">ID: #{id}</span>
         </div>
       </div>
 
@@ -26,7 +24,7 @@ const ProductHeader = () => {
         <span className="block text-sm font-bold text-gray-500 uppercase">
           Price
         </span>
-        <span className="block text-2xl font-bold text-gray-900">$500.00</span>
+        <span className="block text-2xl font-bold text-gray-900">{price}</span>
       </div>
     </div>
   );

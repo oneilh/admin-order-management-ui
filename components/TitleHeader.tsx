@@ -1,6 +1,6 @@
 
 import { IoAddOutline } from "react-icons/io5";
-const BuysHeader = () => {
+const TitleHeader = () => {
   return (
     <section className="flex items-center justify-between">
       <div className="flex flex-col gap-4">
@@ -17,4 +17,4 @@ const BuysHeader = () => {
   )
 }
 
-export default BuysHeader
+export default TitleHeader

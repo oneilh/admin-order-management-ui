@@ -8,7 +8,7 @@ import {
   MantineProvider,
   mantineHtmlProps,
 } from "@mantine/core";
-import SideMenu from "@/components/SideMenu/SideMenu";
+import SideMenu from "@/components/Layout/SideMenu/SideMenu";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

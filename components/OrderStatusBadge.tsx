@@ -4,13 +4,13 @@ import { statusIcon } from "./StatusIcons";
 const OrderStatusBadge = ({item}:Record<string, any>) => {
   return (
     <td>
-      {item.status.toLowerCase() == "active" ? (
+      {item.overall_status.toLowerCase() == "active" ? (
         <Badge leftSection={statusIcon.processing} variant="light">
-          {item.status}
+          {item.overall_status}
         </Badge>
       ) : (
         <Badge leftSection={statusIcon.completed} variant="light" color="green">
-          {item.status}
+          {item.overall_status}
         </Badge>
       )}
     </td>

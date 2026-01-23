@@ -1,8 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import OrderStatusBadge from "../OrderStatusBadge";
-import Product from "../Product";
+import OrderStatusBadge from "../../OrderStatusBadge";
+import Product from "../../Product";
 
 type TbodyProps = {
   data?: Record<string, any>[];
@@ -28,12 +28,12 @@ const Tbody = ({ data = [], showStatus = false }: TbodyProps) => {
 
           <Product item={item} />
 
-          <td>{item.buyer_count}</td>
+          <td>{item.no_of_buyers}</td>
           <td>{item.price}</td>
 
           {!showStatus && <OrderStatusBadge item={item} />}
 
-          <td>{item.date}</td>
+          <td>{item.created_at}</td>
         </tr>
       ))}
     </tbody>
