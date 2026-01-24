@@ -1,6 +1,10 @@
-import { OrderType } from "@/Types/singleOrder";
+import { ProductSummaryCardProps } from "./ProductSummaryCard";
 
-const ProductHeader = ({ id, product_name, price }: OrderType) => {
+const ProductHeader = ({
+  id,
+  product_name,
+  price,
+}: Omit<ProductSummaryCardProps, "description">) => {
   // Header: Title & Price
   return (
     <div className="flex justify-between items-start gap-4 shrink-0">
@@ -11,11 +15,19 @@ const ProductHeader = ({ id, product_name, price }: OrderType) => {
         </div>
 
         {/* Title & ID */}
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-3 items-center">
           <h3 className="text-xl font-bold text-gray-900 leading-tight">
             {product_name}
           </h3>
-          <span className="text-sm text-gray-500 font-medium">ID: #{id}</span>
+          <div className="flex gap-4">
+            <span className="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-lg text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-800/30 dark:text-blue-500">
+              ID: #{id}
+            </span>
+            <span className="w-fit inline-flex items-center gap-x-1.5 py-1 px-3 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-800/30 dark:text-blue-500">
+              <span className="size-1.5 inline-block rounded-full bg-blue-800 dark:bg-blue-500"></span>
+              Active
+            </span>
+          </div>
         </div>
       </div>
 

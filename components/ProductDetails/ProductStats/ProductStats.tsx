@@ -3,12 +3,13 @@ import Revenue from "./Revenue";
 import Inventory from "./Inventory";
 import Updated from "./Updated";
 import { OrderType } from "@/Types/singleOrder";
+import ProductStatsDemo from "./ProductStatsDemo";
 
 const ProductStats = ({
   no_of_buyers,
   created_at,
   overall_status,
-}: OrderType) => {
+}: Pick<OrderType, "no_of_buyers" | "created_at" | "overall_status">) => {
   return (
     <section className="product-stats h-full flex flex-col bg-white border border-gray-300 rounded-lg overflow-hidden shadow-sm">
       {/* Header */}

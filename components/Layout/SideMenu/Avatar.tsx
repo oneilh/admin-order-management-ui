@@ -1,10 +1,11 @@
 const Avatar = () => {
   return (
-    <div className="avatar avatar-placeholder">
-      <div className="bg-neutral text-neutral-content w-12 rounded-full">
-        <span>SY</span>
+ 
+      <div className="flex gap-3 items-center">
+        <div className=" p-4 bg-black text-neutral-content rounded-full">SY</div>
+        <p>Johnson Adani</p>
       </div>
-    </div>
+
   );
 };
 

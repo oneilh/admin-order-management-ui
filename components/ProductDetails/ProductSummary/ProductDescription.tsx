@@ -1,8 +1,8 @@
 import { OrderType } from "@/Types/singleOrder";
 
-const ProductDescription = ({ description }: OrderType) => {
+const ProductDescription = ({ description }: Pick<OrderType, "description">) => {
   return (
-    <div className="flex flex-col flex-1 min-h-0">
+    <div className="flex flex-col gap-2">
       <h4 className="text-sm font-bold text-gray-900 uppercase mb-3 shrink-0">
         Description
       </h4>

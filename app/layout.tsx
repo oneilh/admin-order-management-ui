@@ -48,9 +48,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <MantineProvider>
-          <main className="flex">
+          <main className="flex h-screen overflow-clip">
             <SideMenu />
-            <div className="w-full p-12">{children}</div>
+            <div className="grow-12 p-8 overflow-auto">{children}</div>
           </main>
         </MantineProvider>
       </body>
