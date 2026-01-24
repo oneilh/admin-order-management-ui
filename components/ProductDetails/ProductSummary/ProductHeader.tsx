@@ -15,7 +15,7 @@ const ProductHeader = ({
         </div>
 
         {/* Title & ID */}
-        <div className="flex flex-col gap-3 items-center">
+        <div className="flex flex-col gap-3">
           <h3 className="text-xl font-bold text-gray-900 leading-tight">
             {product_name}
           </h3>

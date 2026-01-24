@@ -1,5 +1,5 @@
 import BreadCrumbs from "@/components/BreadCrumbs";
-import ProductDetails from "@/components/ProductDetails/ProductDetails";
+import SingleBuyProductDetail from "./SingleBuyProductDetail";
 
 const ProductPage = async ({
   params,
@@ -7,10 +7,11 @@ const ProductPage = async ({
   params: Promise<{ productId: string }>;
 }) => {
   const { productId } = await params;
+
   return (
     <div className="w-full">
-      <BreadCrumbs/>
-      <ProductDetails productId={productId} />
+      <BreadCrumbs />
+      <SingleBuyProductDetail productId={productId} />
     </div>
   );
 };

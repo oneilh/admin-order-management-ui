@@ -8,8 +8,8 @@ export type BuyerType = {
   order_status: string;
   payment_status: string;
 };
-export type OrderType = {
-  id: number;
+export type SingleBuyType = {
+  id: string;
   product_name: string;
   no_of_buyers: number;
   price: string; // keep string like "$25"

@@ -1,6 +1,6 @@
-import {OrderType } from "@/Types/singleOrder";
+import {SingleOrderType } from "@/Types/singleOrder";
 
-const BuyerListRows = ({ buyers }: Pick<OrderType, "buyers">) => {
+const BuyerListRows = ({ buyers }: Pick<SingleOrderType, "buyers">) => {
   if(!buyers){
     return
   }

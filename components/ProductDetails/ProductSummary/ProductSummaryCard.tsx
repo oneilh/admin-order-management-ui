@@ -1,8 +1,8 @@
-import { OrderType } from "@/Types/singleOrder";
+import { SingleOrderType } from "@/Types/singleOrder";
 import ProductDescription from "./ProductDescription";
 import ProductHeader from "./ProductHeader";
 export type ProductSummaryCardProps = Pick<
-  OrderType,
+  SingleOrderType,
   "id" | "product_name" | "price" | "description"
 >;
 

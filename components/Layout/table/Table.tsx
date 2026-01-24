@@ -8,7 +8,7 @@ export type TableProps = {
 };
 const Table = ({ columns, children }: TableProps) => {
   return (
-    <section className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+    <section className="overflow-x-auto rounded-box border border-gray-200">
       <table className="table">
         <Thead columns={columns} />
         <tbody>{children}</tbody>

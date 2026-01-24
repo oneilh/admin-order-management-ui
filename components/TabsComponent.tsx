@@ -4,7 +4,7 @@ import { Tabs } from "@mantine/core";
 import { useState } from "react";
 import TabPanel from "./TabPanel";
 
-const TabsComponent = () => {
+const TabsComponent = ({ route }: { route?: string }) => {
   const [activeTab, setActiveTab] = useState<string | null>("first");
   return (
     <Tabs value={activeTab} onChange={setActiveTab}>
@@ -14,7 +14,7 @@ const TabsComponent = () => {
         <Tabs.Tab value="third">Past Orders</Tabs.Tab>
       </Tabs.List>
 
-      <TabPanel/>
+      <TabPanel route={route}/>
     </Tabs>
   );
 };

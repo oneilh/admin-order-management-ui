@@ -2,15 +2,14 @@ import ProductsBuyers from "@/components/ProductDetails/BuyersList/ProductsBuyer
 import ProductStats from "@/components/ProductDetails/ProductStats/ProductStats";
 import ProductStatsDemo from "@/components/ProductDetails/ProductStats/ProductStatsDemo";
 import ProductSummaryCard from "@/components/ProductDetails/ProductSummary/ProductSummaryCard";
-import { singleBuyData } from "@/data/buy";
+import { singleBuyData } from "@/data/singlebuy";
 import { ProductIDPropType } from "@/Types/productTypes";
-import { OrderType } from "@/Types/singleOrder";
+import { SingleOrderType } from "@/Types/singleOrder";
 
 const SingleBuyProductDetail = ({ productId }: ProductIDPropType) => {
-  const ID = Number(productId);
-
-  // Find the product by ID
-  const single_product = singleBuyData.find((item) => item.id === ID);
+  const single_product = singleBuyData.find((item) => {
+    return item.id == productId;
+  });
 
   if (!single_product) {
     return (
@@ -28,7 +27,7 @@ const SingleBuyProductDetail = ({ productId }: ProductIDPropType) => {
     created_at,
     overall_status,
     buyers,
-  }: OrderType = single_product;
+  }: SingleOrderType = single_product;
   return (
     <div className="flex flex-col gap-8">
       <p className="text-3xl font-bold">Order Overview</p>

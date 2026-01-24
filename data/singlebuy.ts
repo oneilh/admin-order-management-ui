@@ -1,8 +1,8 @@
-import { OrderType } from "@/Types/singleOrder";
+import { SingleBuyType } from "@/Types/singleOrder";
 
-export const singleBuyData: OrderType[] = [
+export const singleBuyData: SingleBuyType[] = [
   {
-    id: 1,
+    id: "PRD-9F3A2C",
     product_name: "Wireless Mouse",
     no_of_buyers: 5,
     price: "$25",
@@ -65,7 +65,7 @@ export const singleBuyData: OrderType[] = [
     ],
   },
   {
-    id: 2,
+    id: "SKU-48271",
     product_name: "Mechanical Keyboard",
     no_of_buyers: 5,
     price: "$70",
@@ -108,7 +108,7 @@ export const singleBuyData: OrderType[] = [
     ],
   },
   {
-    id: 3,
+    id: "ITEM-A72X9",
     product_name: "Gaming Headset",
     no_of_buyers: 4,
     price: "$45",
@@ -140,7 +140,7 @@ export const singleBuyData: OrderType[] = [
     ],
   },
   {
-    id: 4,
+    id: "PROD-2024-0187",
     product_name: "USB-C Hub",
     no_of_buyers: 3,
     price: "$30",
@@ -192,7 +192,7 @@ export const singleBuyData: OrderType[] = [
     ],
   },
   {
-    id: 5,
+    id: "PID-X83QK",
     product_name: "Webcam 1080p",
     no_of_buyers: 10,
     price: "$55",

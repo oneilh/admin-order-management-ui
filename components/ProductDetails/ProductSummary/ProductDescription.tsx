@@ -1,8 +1,8 @@
-import { OrderType } from "@/Types/singleOrder";
+import { SingleOrderType } from "@/Types/singleOrder";
 
-const ProductDescription = ({ description }: Pick<OrderType, "description">) => {
+const ProductDescription = ({ description }: Pick<SingleOrderType, "description">) => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-0.5">
       <h4 className="text-sm font-bold text-gray-900 uppercase mb-3 shrink-0">
         Description
       </h4>

@@ -1,6 +1,6 @@
 import { singleBuyColumns } from "@/components/Layout/table/Columns";
 import Table from "@/components/Layout/table/Table";
-import { singleBuyData } from "@/data/buy";
+import { singleBuyData } from "@/data/singlebuy";
 import SingleBuyTableRows from "./SingleBuyTableRows";
 
 const SingleBuyProductList = ({ value }: { value: string }) => {

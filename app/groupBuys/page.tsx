@@ -1,8 +1,16 @@
+import TabsComponent from "@/components/TabsComponent"
+import TitleHeader from "@/components/TitleHeader"
+import { title } from "process"
+const pageInfo = {
+title: "Group Buys",
+description: "Manage group purchase orders"
+}
 const page = () => {
   return (
-    <div>
-      hello
-    </div>
+     <section className="flex flex-col gap-4">
+      <TitleHeader title={pageInfo.title} desc={pageInfo.description}/>
+      <TabsComponent route="groupBuys"/>
+    </section>
   )
 }
 

@@ -1,18 +1,18 @@
 import BuyersList from "./BuyersList";
-import { OrderType } from "@/Types/singleOrder";
+import { SingleOrderType } from "@/Types/singleOrder";
 
-const ProductsBuyers = ({ buyers }: Pick<OrderType, "buyers">) => {
+const ProductsBuyers = ({ buyers }: Pick<SingleOrderType, "buyers">) => {
   return (
-    <section className=" flex flex-col bg-white border border-gray-300 rounded-lg overflow-hidden shadow-sm">
+    <section className=" flex flex-col gap-6 p-6 bg-white border border-dashed border-gray-300 rounded-md shadow-sm">
       {/*== Header */}
-      <div className="px-6 py-4 border-b border-gray-300 shrink-0 bg-white">
-        <h3 className="text-lg font-bold text-gray-900">Recent Buyers</h3>
-      </div>
+
+      <h3 className="text-lg font-bold text-gray-900">Recent Buyers</h3>
+
       <section className="flex flex-col">
         {/*==Table Body */}
         <BuyersList {...{ buyers }} />
         {/* Pagination */}
-        <div className="px-6 py-4 border-t border-gray-300 bg-gray-50 shrink-0 flex items-center justify-between">
+        <div className="px-6 pt-4 bg-gray-50 shrink-0 flex items-center justify-between">
           <span className="text-sm text-gray-600">
             Showing <b>1-4</b> of <b>42</b>
           </span>
