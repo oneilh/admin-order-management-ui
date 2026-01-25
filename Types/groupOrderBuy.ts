@@ -1,8 +1,8 @@
 export type GroupMemberType = {
-  member_id: number;
+ buyer_id: number;
   name: string;
   email: string;
-  unit: number;
+  qty: number;
   order_date: string;
   order_status: string;
   payment_status: string;
@@ -19,5 +19,5 @@ export type GroupBuyType = {
   start_date: string;
   end_date: string;
   status: string;
-  members?: GroupMemberType[]; // array of group members
+  buyers: GroupMemberType[]; // array of group members
 };

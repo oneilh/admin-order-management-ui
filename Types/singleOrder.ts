@@ -2,7 +2,7 @@ export type BuyerType = {
   buyer_id: number;
   name: string;
   email: string;
-  quantity: number;
+  qty: number;
   amount_paid: string; // keep as string since price has "$"
   order_date: string;
   order_status: string;
@@ -15,6 +15,6 @@ export type SingleBuyType = {
   price: string; // keep string like "$25"
   description: string;
   created_at: string;
-  overall_status: string;
-  buyers?: BuyerType[]; // array of buyers
+  status: string;
+  buyers: BuyerType[]; // array of buyers
 };

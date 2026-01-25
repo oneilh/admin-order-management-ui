@@ -1,17 +1,26 @@
-import { GroupBuyType } from "@/Types/groupOrderBuy";
-import GroupBuyerList from "./GroupBuyerList";
+import GroupBuyerList from '@/app/groupBuys/[productId]/GroupBuyerList';
+import { GroupBuyType } from '@/Types/groupOrderBuy';
+import { SingleBuyType } from '@/Types/singleOrder';
+import BuyerList from './BuyerList';
+import { TableColumnType } from '@/Types/tableColumnType';
 
+export type BuyerTableProps = {
+  data: any[];
+  columns: TableColumnType[];
+  isGroupBuy?: boolean;
+}
 
-const GroupBuyerTable = ({ members }: Pick<GroupBuyType, "members">) => {
+const BuyerTable = ({data, columns, isGroupBuy=false}: BuyerTableProps) => {
   return (
-    <section className=" flex flex-col gap-6 p-6 bg-white border border-dashed border-gray-300 rounded-md shadow-sm">
+        <section className=" flex flex-col gap-6 p-6 bg-white border border-dashed border-gray-300 rounded-md shadow-sm">
       {/*== Header */}
 
       <h3 className="text-lg font-bold text-gray-900">Recent Buyers</h3>
 
       <section className="flex flex-col">
         {/*==Table Body */}
-        <GroupBuyerList {...{ members }} />
+        <BuyerList {...{ data, columns, isGroupBuy }} />
+   
         {/* Pagination */}
         <div className="px-6 pt-4 bg-gray-50 shrink-0 flex items-center justify-between">
           <span className="text-sm text-gray-600">
@@ -28,7 +37,7 @@ const GroupBuyerTable = ({ members }: Pick<GroupBuyType, "members">) => {
         </div>
       </section>
     </section>
-  );
-};
+  )
+}
 
-export default GroupBuyerTable;
+export default BuyerTable

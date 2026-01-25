@@ -38,13 +38,13 @@ const TabPanelComponent = ({ isGroupBuy = false }: PageNameprop) => {
     // === for single buy ===
     if (value === "second") {
       const activeOrders = singleBuyData.filter(
-        (item) => item.overall_status === "Active",
+        (item) => item.status === "Active",
       );
       return <ProductList column={singleBuyCols} data={activeOrders} />;
     }
     if (value === "third") {
       const pastOrders = singleBuyData.filter(
-        (item) => item.overall_status !== "Active",
+        (item) => item.status !== "Active",
       );
       return <ProductList column={singleBuyCols} data={pastOrders} />;
     }

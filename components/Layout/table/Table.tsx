@@ -1,9 +1,9 @@
-import { Column } from "../../../data/Columns";
+import { TableColumnType } from "@/Types/tableColumnType";
 import Thead from "./Thead";
 import { ReactNode } from "react";
 
 export type TableProps = {
-  columns: Column[];
+  columns: TableColumnType[];
   children: ReactNode;
 };
 const Table = ({ columns, children }: TableProps) => {

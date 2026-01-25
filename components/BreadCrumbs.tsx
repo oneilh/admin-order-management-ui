@@ -1,12 +1,16 @@
-const BreadCrumbs = () => {
+import Link from "next/link";
+
+const BreadCrumbs = ({ isGroupBuy = false }: { isGroupBuy?: boolean }) => {
   return (
     <div className="breadcrumbs text-sm">
       <ul>
         <li>
-          <a>SingleBuys Products</a>
+          <Link href={isGroupBuy ? "/groupBuys" : "/singleBuys"}>
+            {isGroupBuy ? "GroupBuys Products" : "SingleBuys Products"}
+          </Link>
         </li>
         <li>
-          <a>Details</a>
+          <Link href={""}>Details</Link>
         </li>
       </ul>
     </div>

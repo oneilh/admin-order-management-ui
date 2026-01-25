@@ -8,7 +8,7 @@ export const groupBuyCols: TableColumnType[] = [
   { key: "joined_members", label: "Joined Members" },
   { key: "start_date", label: "Starts On" },
   { key: "end_date", label: "Ends On" },
-  { key: "overall_status", label: "Status" },
+  { key: "status", label: "Status" },
 ];
 
 
@@ -16,8 +16,7 @@ export const groupMembersCols: TableColumnType[] = [
   { key: "member_id", label: "Member ID" },
   { key: "name", label: "Name" },
   { key: "email", label: "Email" },
-  { key: "quantity", label: "Quantity" },
-  { key: "amount_paid", label: "Amount Paid" },
+  { key: "units", label: "Units" },
   { key: "order_date", label: "Joined On" },
   { key: "order_status", label: "Order Status" },
   { key: "payment_status", label: "Payment Status" },

@@ -1,5 +1,6 @@
 import BreadCrumbs from "@/components/BreadCrumbs";
 import SingleBuyProductDetail from "./SingleBuyProductDetail";
+import ProductDetails from "@/components/ProductDetails";
 
 const ProductPage = async ({
   params,
@@ -11,7 +12,8 @@ const ProductPage = async ({
   return (
     <div className="w-full">
       <BreadCrumbs />
-      <SingleBuyProductDetail productId={productId} />
+      <ProductDetails productId={productId} isGroupBuy={false} />
+      {/* <SingleBuyProductDetail productId={productId} /> */}
     </div>
   );
 };

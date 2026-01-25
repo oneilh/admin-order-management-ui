@@ -1,5 +1,5 @@
 import BreadCrumbs from "@/components/BreadCrumbs";
-import GroupBuyProductDetail from "./GroupBuyProductDetail";
+import ProductDetails from "@/components/ProductDetails";
 
 const ProductPage = async ({
   params,
@@ -10,8 +10,8 @@ const ProductPage = async ({
 
   return (
     <div className="w-full">
-      <BreadCrumbs />
-      <GroupBuyProductDetail productId={productId} />
+      <BreadCrumbs isGroupBuy={true} />
+      <ProductDetails productId={productId} isGroupBuy={true} />
     </div>
   );
 };
