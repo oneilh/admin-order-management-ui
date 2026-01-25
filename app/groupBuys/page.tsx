@@ -1,4 +1,4 @@
-import TabsComponent from "@/components/TabsComponent"
+import TabsComponent from "@/components/tab/TabsComponent"
 import TitleHeader from "@/components/TitleHeader"
 import { title } from "process"
 const pageInfo = {
@@ -9,7 +9,7 @@ const page = () => {
   return (
      <section className="flex flex-col gap-4">
       <TitleHeader title={pageInfo.title} desc={pageInfo.description}/>
-      <TabsComponent route="groupBuys"/>
+      <TabsComponent isGroupBuy={true}/>
     </section>
   )
 }

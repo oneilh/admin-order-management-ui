@@ -1,4 +1,4 @@
-import { Column } from "./Columns";
+import { Column } from "../../../data/Columns";
 
 type TheadProps = {
   columns: Column[];

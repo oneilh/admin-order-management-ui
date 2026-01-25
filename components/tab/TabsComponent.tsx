@@ -2,9 +2,13 @@
 
 import { Tabs } from "@mantine/core";
 import { useState } from "react";
-import TabPanel from "./TabPanel";
+import TabPanelComponent from "./TabPanelComponent";
 
-const TabsComponent = ({ route }: { route?: string }) => {
+export type PageNameprop= {
+  isGroupBuy?: boolean;
+}
+
+const TabsComponent = ({ isGroupBuy = false }: PageNameprop) => {
   const [activeTab, setActiveTab] = useState<string | null>("first");
   return (
     <Tabs value={activeTab} onChange={setActiveTab}>
@@ -14,7 +18,7 @@ const TabsComponent = ({ route }: { route?: string }) => {
         <Tabs.Tab value="third">Past Orders</Tabs.Tab>
       </Tabs.List>
 
-      <TabPanel route={route}/>
+      <TabPanelComponent isGroupBuy={isGroupBuy}/>
     </Tabs>
   );
 };

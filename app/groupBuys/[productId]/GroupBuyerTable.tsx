@@ -1,7 +1,8 @@
-import BuyersList from "./BuyersList";
-import { SingleOrderType } from "@/Types/singleOrder";
+import { GroupBuyType } from "@/Types/groupOrderBuy";
+import GroupBuyerList from "./GroupBuyerList";
 
-const ProductsBuyers = ({ buyers }: Pick<SingleOrderType, "buyers">) => {
+
+const GroupBuyerTable = ({ members }: Pick<GroupBuyType, "members">) => {
   return (
     <section className=" flex flex-col gap-6 p-6 bg-white border border-dashed border-gray-300 rounded-md shadow-sm">
       {/*== Header */}
@@ -10,7 +11,7 @@ const ProductsBuyers = ({ buyers }: Pick<SingleOrderType, "buyers">) => {
 
       <section className="flex flex-col">
         {/*==Table Body */}
-        <BuyersList {...{ buyers }} />
+        <GroupBuyerList {...{ members }} />
         {/* Pagination */}
         <div className="px-6 pt-4 bg-gray-50 shrink-0 flex items-center justify-between">
           <span className="text-sm text-gray-600">
@@ -30,4 +31,4 @@ const ProductsBuyers = ({ buyers }: Pick<SingleOrderType, "buyers">) => {
   );
 };
 
-export default ProductsBuyers;
+export default GroupBuyerTable;

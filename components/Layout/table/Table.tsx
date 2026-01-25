@@ -1,4 +1,4 @@
-import { Column } from "./Columns";
+import { Column } from "../../../data/Columns";
 import Thead from "./Thead";
 import { ReactNode } from "react";
 

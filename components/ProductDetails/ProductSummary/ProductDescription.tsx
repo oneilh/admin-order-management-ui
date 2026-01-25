@@ -1,6 +1,7 @@
-import { SingleOrderType } from "@/Types/singleOrder";
+import { SingleBuyType } from "@/Types/singleOrder";
 
-const ProductDescription = ({ description }: Pick<SingleOrderType, "description">) => {
+
+const ProductDescription = ({ description }: Pick<SingleBuyType, "description">) => {
   return (
     <div className="flex flex-col gap-0.5">
       <h4 className="text-sm font-bold text-gray-900 uppercase mb-3 shrink-0">

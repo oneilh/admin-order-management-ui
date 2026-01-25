@@ -1,6 +1,7 @@
-import {SingleOrderType } from "@/Types/singleOrder";
+import { SingleBuyType } from "@/Types/singleOrder";
 
-const BuyerListRows = ({ buyers }: Pick<SingleOrderType, "buyers">) => {
+
+const SingleBuyerListRows = ({ buyers }: Pick<SingleBuyType, "buyers">) => {
   if(!buyers){
     return
   }
@@ -22,4 +23,4 @@ const BuyerListRows = ({ buyers }: Pick<SingleOrderType, "buyers">) => {
   );
 };
 
-export default BuyerListRows;
+export default SingleBuyerListRows;

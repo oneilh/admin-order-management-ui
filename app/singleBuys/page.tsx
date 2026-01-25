@@ -1,4 +1,4 @@
-import TabsComponent from "@/components/TabsComponent";
+import TabsComponent from "@/components/tab/TabsComponent";
 import TitleHeader from "../../components/TitleHeader";
 
 

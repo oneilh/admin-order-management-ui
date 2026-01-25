@@ -1,18 +1,17 @@
-import SingleBuyTable from "@/app/singleBuys/[productId]/SingleBuyerTable";
 import ProductStats from "@/components/ProductDetails/ProductStats/ProductStats";
 import ProductStatsDemo from "@/components/ProductDetails/ProductStats/ProductStatsDemo";
 import ProductSummaryCard from "@/components/ProductDetails/ProductSummary/ProductSummaryCard";
-import { singleBuyData } from "@/data/singlebuy";
+import { groupBuyData } from "@/data/groupbuy";
+import { GroupBuyType } from "@/Types/groupOrderBuy";
 import { ProductIDPropType } from "@/Types/productTypes";
-import { SingleBuyType } from "@/Types/singleOrder";
+import GroupBuyerTable from "./GroupBuyerTable";
 
-
-const SingleBuyProductDetail = ({ productId }: ProductIDPropType) => {
-  const single_product = singleBuyData.find((item) => {
+const GroupBuyProductDetail = ({ productId }: ProductIDPropType) => {
+  const productGroup = groupBuyData.find((item) => {
     return item.id == productId;
   });
 
-  if (!single_product) {
+  if (!productGroup) {
     return (
       <section className="product-details-container">
         <p>Product not found.</p>
@@ -21,14 +20,17 @@ const SingleBuyProductDetail = ({ productId }: ProductIDPropType) => {
   }
   const {
     id,
+    group_name,
     product_name,
-    no_of_buyers,
     price,
     description,
-    created_at,
+    needed_members,
+    joined_members,
+    start_date,
+    end_date,
     overall_status,
-    buyers,
-  }: SingleBuyType = single_product;
+    members,
+  }: GroupBuyType = productGroup;
   return (
     <div className="flex flex-col gap-8">
       <p className="text-3xl font-bold">Order Overview</p>
@@ -38,10 +40,10 @@ const SingleBuyProductDetail = ({ productId }: ProductIDPropType) => {
         <ProductStatsDemo />
       </section>
       <div className="w-full">
-        <SingleBuyTable {...{ buyers }} />
+        <GroupBuyerTable {...{ members }} />
       </div>
     </div>
   );
 };
 
-export default SingleBuyProductDetail;
+export default GroupBuyProductDetail;
