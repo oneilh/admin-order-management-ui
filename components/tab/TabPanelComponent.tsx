@@ -1,67 +1,54 @@
+"use client";
+
 import { Tabs } from "@mantine/core";
-import { PageNameprop } from "./TabsComponent";
-import { singleBuyData } from "@/data/singlebuy";
-import { groupBuyData } from "@/data/groupbuy";
-import ProductList from "../ProductList";
-import { singleBuyCols } from "@/data/singleBuy_prod_and_users_columns";
-import { groupBuyCols } from "@/data/groupBuy_prod_and_users_columns";
+import { GroupBuyType } from "@/Types/groupOrderBuy";
+import { TableColumnType } from "@/Types/tableColumnType";
+import { useState } from "react";
+import Table from "../Layout/table/Table";
+import TableRows from "../Layout/table/TableRows";
 
-const TabPanelComponent = ({ isGroupBuy = false }: PageNameprop) => {
-  const tabTabValues = ["first", "second", "third"];
+const TabPanelComponent = ({
+  products,
+  col,
+}: {
+  products: any[];
+  col: TableColumnType[];
+}) => {
+  const [filteredProducts, setFilteredProducts] =
+    useState<GroupBuyType[]>(products);
 
-  // === function to fetch data based on tab value ===
+  const tabValues = ["first", "second", "third"];
 
-  //=== for group buy ===
-  function fetchData(value: string) {
-    if (isGroupBuy) {
-      if (value === "second") {
-        const activeOrders = groupBuyData.filter(
-          (item) => item.status === "Active",
-        );
-        return (
-          <ProductList column={groupBuyCols} data={activeOrders} isGroupBuy />
-        );
-      }
-      if (value === "third") {
-        const pastOrders = groupBuyData.filter(
-          (item) => item.status !== "Active",
-        );
-        return (
-          <ProductList column={groupBuyCols} data={pastOrders} isGroupBuy />
-        );
-      }
-      return (
-        <ProductList column={groupBuyCols} data={groupBuyData} isGroupBuy />
-      );
-    }
+  const handleTabChange = (value: string | null) => {
+    if (!value) return;
 
-    // === for single buy ===
     if (value === "second") {
-      const activeOrders = singleBuyData.filter(
-        (item) => item.status === "Active",
-      );
-      return <ProductList column={singleBuyCols} data={activeOrders} />;
+      setFilteredProducts(products.filter((item) => item.status === "Active"));
+    } else if (value === "third") {
+      setFilteredProducts(products.filter((item) => item.status !== "Active"));
+    } else {
+      setFilteredProducts(products); // "first"
     }
-    if (value === "third") {
-      const pastOrders = singleBuyData.filter(
-        (item) => item.status !== "Active",
-      );
-      return <ProductList column={singleBuyCols} data={pastOrders} />;
-    }
-    return <ProductList column={singleBuyCols} data={singleBuyData} />;
-  }
+  };
+
   return (
-    <>
-      {tabTabValues.map((value, index) => {
-        return (
-          <Tabs.Panel value={value} key={index}>
-            <div className="my-6 p-4 border border-dashed border-gray-300 shadow-md rounded-xl">
-              {fetchData(value)}
-            </div>
-          </Tabs.Panel>
-        );
-      })}
-    </>
+    <Tabs defaultValue="first" onChange={handleTabChange}>
+      <Tabs.List>
+        <Tabs.Tab value="first">All</Tabs.Tab>
+        <Tabs.Tab value="second">Active</Tabs.Tab>
+        <Tabs.Tab value="third">Past</Tabs.Tab>
+      </Tabs.List>
+
+      {tabValues.map((value) => (
+        <Tabs.Panel value={value} key={value}>
+          <div className="my-6 p-4 border border-dashed border-gray-300 shadow-md rounded-xl">
+            <Table columns={col}>
+              <TableRows data={filteredProducts} />
+            </Table>
+          </div>
+        </Tabs.Panel>
+      ))}
+    </Tabs>
   );
 };
 

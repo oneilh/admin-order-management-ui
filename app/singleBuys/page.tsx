@@ -2,7 +2,7 @@ import TabsComponent from "@/components/tab/TabsComponent";
 import TitleHeader from "../../components/TitleHeader";
 import { singleBuyData } from "@/data/singlebuy";
 import { singleBuyCols } from "@/data/singleBuy_prod_and_users_columns";
-import Exp_TabPanelComponent from "@/components/tab/Exp_TabPanelComponent";
+import TabPanelComponent from "@/components/tab/TabPanelComponent";
 
 
 
@@ -18,7 +18,7 @@ const SingleBuyPage = () => {
         <p>{pageInfo.description}</p>
       </TitleHeader>
       <TabsComponent>
-        <Exp_TabPanelComponent products={singleBuyData} col={singleBuyCols} />
+        <TabPanelComponent products={singleBuyData} col={singleBuyCols} />
       </TabsComponent>
     </section>
   );

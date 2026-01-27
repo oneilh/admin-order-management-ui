@@ -1,4 +1,4 @@
-import Exp_TabPanelComponent from "@/components/tab/Exp_TabPanelComponent";
+import TabPanelComponent from "@/components/tab/TabPanelComponent";
 import TabsComponent from "@/components/tab/TabsComponent";
 import TitleHeader from "@/components/TitleHeader";
 import { groupBuyData } from "@/data/groupbuy";
@@ -16,7 +16,7 @@ const page = () => {
       </TitleHeader>
 
       <TabsComponent>
-        <Exp_TabPanelComponent products={groupBuyData} col={groupBuyCols} />
+        <TabPanelComponent products={groupBuyData} col={groupBuyCols} />
       </TabsComponent>
     </section>
   );
