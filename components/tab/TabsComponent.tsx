@@ -6,9 +6,10 @@ import TabPanelComponent from "./TabPanelComponent";
 
 export type PageNameprop= {
   isGroupBuy?: boolean;
+  children?: React.ReactNode;
 }
 
-const TabsComponent = ({ isGroupBuy = false }: PageNameprop) => {
+const TabsComponent = ({ isGroupBuy = false, children}: PageNameprop) => {
   const [activeTab, setActiveTab] = useState<string | null>("first");
   return (
     <Tabs value={activeTab} onChange={setActiveTab}>
@@ -18,7 +19,9 @@ const TabsComponent = ({ isGroupBuy = false }: PageNameprop) => {
         <Tabs.Tab value="third">Past Orders</Tabs.Tab>
       </Tabs.List>
 
-      <TabPanelComponent isGroupBuy={isGroupBuy}/>
+      {/* <TabPanelComponent isGroupBuy={isGroupBuy}/> */}
+      {/* remove below later */}
+      {children}
     </Tabs>
   );
 };

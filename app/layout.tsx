@@ -9,6 +9,7 @@ import {
   mantineHtmlProps,
 } from "@mantine/core";
 import SideMenu from "@/components/Layout/SideMenu/SideMenu";
+import QueryProvider from "@/QueryProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,12 +48,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <MantineProvider>
-          <main className="flex h-screen overflow-clip">
-            <SideMenu />
-            <div className="grow-12 p-8 overflow-auto">{children}</div>
-          </main>
-        </MantineProvider>
+        <QueryProvider>
+          <MantineProvider>
+            <main className="flex h-screen overflow-clip">
+              <SideMenu />
+              <div className="grow-12 p-8 overflow-auto">{children}</div>
+            </main>
+          </MantineProvider>
+        </QueryProvider>
       </body>
     </html>
   );
