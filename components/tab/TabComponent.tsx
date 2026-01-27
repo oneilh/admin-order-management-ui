@@ -7,7 +7,7 @@ import { useState } from "react";
 import Table from "../Layout/table/Table";
 import TableRows from "../Layout/table/TableRows";
 
-const TabPanelComponent = ({
+const TabComponent = ({
   products,
   col,
 }: {
@@ -52,4 +52,4 @@ const TabPanelComponent = ({
   );
 };
 
-export default TabPanelComponent;
+export default TabComponent;

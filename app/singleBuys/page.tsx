@@ -1,10 +1,7 @@
-import TabsComponent from "@/components/tab/TabsComponent";
 import TitleHeader from "../../components/TitleHeader";
 import { singleBuyData } from "@/data/singlebuy";
 import { singleBuyCols } from "@/data/singleBuy_prod_and_users_columns";
-import TabPanelComponent from "@/components/tab/TabPanelComponent";
-
-
+import TabComponent from "@/components/tab/TabComponent";
 
 const SingleBuyPage = () => {
   const pageInfo = {
@@ -13,13 +10,12 @@ const SingleBuyPage = () => {
   };
   return (
     <section className="flex flex-col gap-4">
-       <TitleHeader title={pageInfo.title} desc={pageInfo.description} >
+      <TitleHeader>
         <h1 className="text-2xl font-semibold">{pageInfo.title}</h1>
         <p>{pageInfo.description}</p>
       </TitleHeader>
-      <TabsComponent>
-        <TabPanelComponent products={singleBuyData} col={singleBuyCols} />
-      </TabsComponent>
+
+      <TabComponent products={singleBuyData} col={singleBuyCols} />
     </section>
   );
 };
