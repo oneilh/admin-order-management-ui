@@ -11,7 +11,7 @@ const Exp_TabPanelComponent = ({
   products,
   col,
 }: {
-  products: GroupBuyType[];
+  products: any[];
   col: TableColumnType[];
 }) => {
   const [filteredProducts, setFilteredProducts] =

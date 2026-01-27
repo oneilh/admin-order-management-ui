@@ -1,12 +1,11 @@
 import { IoAddOutline } from "react-icons/io5";
-type HeaderProps ={ title?: string; desc?: string }
+type HeaderProps ={ title?: string; desc?: string, children?: React.ReactNode}
 const description = "Manage individual purchase orders";
-const TitleHeader = ({ title='Single Buys', desc = description}: HeaderProps) => {
+const TitleHeader = ({ title='Single Buys', desc = description, children}: HeaderProps) => {
   return (
     <section className="flex items-center justify-between">
       <div className="flex flex-col gap-4">
-        <h1 className="text-2xl font-semibold">{title}</h1>
-        <p>{desc}</p>
+       {children}
       </div>
       <button className="btn bg-black text-white">
         <div className="flex items-center">
