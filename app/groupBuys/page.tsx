@@ -1,12 +1,11 @@
 import TabComponent from "@/components/tab/TabComponent";
 import TitleHeader from "@/components/TitleHeader";
 import { groupBuyCols } from "@/data/groupBuy_prod_and_users_columns";
-import Stats from "./Stats";
-import { getCampaignStats } from "./campaignStats";
-import { getGroupBuys } from "@/utils/fetchGroupBuys";
+import { getBuys} from "@/utils/fetchBuys";
+
 const page = async () => {
-  const activeData = await getGroupBuys("ACTIVE");
-  const pastData = await getGroupBuys();
+  const activeData = await getBuys('group', "ACTIVE");
+  const pastData = await getBuys('group');
   console.log("data here:", pastData);
 
 
