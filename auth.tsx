@@ -1,0 +1,5 @@
+export const ACCESS_TOKEN = "CzAFnSMBMOFqEBSzSHOgQRKUvbUrEcFdsk8n5ULnl+dGgSajmKztw/4WPwsGY+m+MMkCwzathRNJbBPC4nF8tXoQJ7ZRaQuX0BhlvKUtKLs9/1qvOP2eprZ/YHKR9r90yWIRZl1+tM9TVjMTAoyhMpkbb8Xa6IXW/tSLRQN5ZJqQAu3CDKYmm/cKs7si7SN4ZVEq57a3lYqBgovsGWyJBOaxak2IBwiVXOI4qCq1jt/wCnsgXkI9u/tKK6d9g6WV1Rojp/tXQF/wDDrL6DrQrA=="; // from backend
+const REFRESH_TOKEN= 'CzAFnSMBMOFqEBSzSHOgQRKUvbUrEcFdsk8n5ULnl+dGgSajmKztw/4WPwsGY+m+MMkCwzathRNJbBPC4nF8tSSbdtzFUqNdkpWH0uCHHuie/VI8DQR+bMJscr1Q8cWZeVwN7qOeclYHqXLCFpf+MDpNlIsTeW/WHvnN39qqM2rbMKk9acZyt+8nrh9uVHbY5iLfT0Wqq3j4IRPxmetj/cvT767YYL3YOYeaZSAxsER6YTEEY3pLufx1kFGqk63V5AdL2dyFu2PzOHmMVVFwKA=='
+const BASE_URL = "https://staging-cloud.grup.com.ng/v1/";
+
+

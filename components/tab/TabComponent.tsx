@@ -24,19 +24,19 @@ const TabComponent = ({
 
     if (value === "second") {
       setFilteredProducts(products.filter((item) => item.status === "Active"));
-    } else if (value === "third") {
-      setFilteredProducts(products.filter((item) => item.status !== "Active"));
-    } else {
-      setFilteredProducts(products); // "first"
     }
+    //  else if (value === "third") {
+    //   setFilteredProducts(products.filter((item) => item.status !== "Active"));
+    // } else {
+    //   setFilteredProducts(products); // "first"
+    // }
   };
 
   return (
     <Tabs defaultValue="first" onChange={handleTabChange}>
       <Tabs.List>
-        <Tabs.Tab value="first">All</Tabs.Tab>
-        <Tabs.Tab value="second">Active</Tabs.Tab>
-        <Tabs.Tab value="third">Past</Tabs.Tab>
+        <Tabs.Tab value="first">Active Orders</Tabs.Tab>
+        <Tabs.Tab value="second">Past Orders</Tabs.Tab>
       </Tabs.List>
 
       {tabValues.map((value) => (
