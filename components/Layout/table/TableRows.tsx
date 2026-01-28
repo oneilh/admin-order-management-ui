@@ -5,7 +5,7 @@ import Product from "../../Product";
 import OrderStatusBadge from "../../OrderStatusBadge";
 
 type TableRowsProps = {
-  data: any[];
+  data?: any[];
 };
 
 const TableRows = ({ data }: TableRowsProps) => {
@@ -24,7 +24,7 @@ const TableRows = ({ data }: TableRowsProps) => {
 
   return (
     <>
-      {data.map((item) => (
+      {/* {data.map((item) => (
         <tr
           key={item.id}
           onClick={() => goToPage(item.id)}
@@ -51,7 +51,7 @@ const TableRows = ({ data }: TableRowsProps) => {
             </>
           )}
         </tr>
-      ))}
+      ))} */}
     </>
   );
 };

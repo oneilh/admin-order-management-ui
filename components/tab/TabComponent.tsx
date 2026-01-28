@@ -1,21 +1,24 @@
 "use client";
 
+import { useState } from "react";
 import { Tabs } from "@mantine/core";
 import { GroupBuyType } from "@/Types/groupOrderBuy";
 import { TableColumnType } from "@/Types/tableColumnType";
-import { useState } from "react";
 import Table from "../Layout/table/Table";
 import TableRows from "../Layout/table/TableRows";
+import GroupBuyRows from "@/app/groupBuys/GroupBuyRows";
 
-const TabComponent = ({
-  products,
-  col,
-}: {
-  products: any[];
-  col: TableColumnType[];
-}) => {
-  const [filteredProducts, setFilteredProducts] =
-    useState<GroupBuyType[]>(products);
+type TabComponentProps = {
+  products?: GroupBuyType[];
+  activeData?: any[];
+  pastData?: any[];
+  col?: TableColumnType[];
+};
+
+const TabComponent = ({ activeData, pastData, col }: TabComponentProps) => {
+  const [filteredProducts, setFilteredProducts] = useState<any[]>(
+    activeData || [],
+  );
 
   const tabValues = ["first", "second", "third"];
 
@@ -23,13 +26,9 @@ const TabComponent = ({
     if (!value) return;
 
     if (value === "second") {
-      setFilteredProducts(products.filter((item) => item.status === "Active"));
+      setFilteredProducts(pastData || []);
     }
-    //  else if (value === "third") {
-    //   setFilteredProducts(products.filter((item) => item.status !== "Active"));
-    // } else {
-    //   setFilteredProducts(products); // "first"
-    // }
+    setFilteredProducts(activeData || []);
   };
 
   return (
@@ -42,8 +41,9 @@ const TabComponent = ({
       {tabValues.map((value) => (
         <Tabs.Panel value={value} key={value}>
           <div className="my-6 p-4 border border-dashed border-gray-300 shadow-md rounded-xl">
-            <Table columns={col}>
+            <Table columns={col || []}>
               <TableRows data={filteredProducts} />
+              <GroupBuyRows data={filteredProducts} />
             </Table>
           </div>
         </Tabs.Panel>

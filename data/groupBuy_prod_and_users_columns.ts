@@ -1,17 +1,16 @@
 import { TableColumnType } from "@/Types/tableColumnType";
 
+// For group buys
 export const groupBuyCols: TableColumnType[] = [
-  { key: "id", label: "ID" },
-  { key: "product_name", label: "Product" },
-  { key: "group_name", label: "Group Name" },
-  { key: "needed_members", label: "Needed Members" },
-  { key: "joined_members", label: "Joined Members" },
-  { key: "start_date", label: "Starts On" },
-  { key: "end_date", label: "Ends On" },
-  { key: "status", label: "Status" },
+  { key: "product", label: "Product" }, // e.g., row.product.name
+  { key: "timeline", label: "Timeline" }, // e.g., computed from created_at → expires_at
+  { key: "progress", label: "Progress" }, // e.g., group_buy_percentage
+  { key: "collected", label: "Collected" }, // e.g., total_amount_collected
+  { key: "status", label: "Status" }, // e.g., group_buy_status
+  { key: "actions", label: "Actions" }, // buttons, etc.
 ];
 
-
+// For group members
 export const groupMembersCols: TableColumnType[] = [
   { key: "member_id", label: "Member ID" },
   { key: "name", label: "Name" },

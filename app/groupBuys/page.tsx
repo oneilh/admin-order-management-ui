@@ -1,21 +1,12 @@
-import { ACCESS_TOKEN } from "@/auth";
 import TabComponent from "@/components/tab/TabComponent";
 import TitleHeader from "@/components/TitleHeader";
 import { groupBuyData } from "@/data/groupbuy";
 import { groupBuyCols } from "@/data/groupBuy_prod_and_users_columns";
 import Stats from "./Stats";
 import { getCampaignStats } from "./campaignStats";
+import { getGroupBuys } from "@/utils/fetchGroupBuys";
 const page = async () => {
-  const type = "ACTIVE";
-  const res = await fetch(
-    `https://staging-cloud.grup.com.ng/v1/sub-admin/v1/group-buys/?type=${type}`,
-    {
-      headers: {
-        Authorization: ACCESS_TOKEN,
-      },
-    },
-  );
-  const activeData = await res.json();
+  const activeData = await getGroupBuys("ACTIVE");
   console.log("data here:", activeData);
 
   const { totalAmount, activeCampaigns, failedCampaigns } = getCampaignStats(
@@ -38,7 +29,12 @@ const page = async () => {
         failedCampaigns={failedCampaigns}
       />
 
-      <TabComponent products={groupBuyData} col={groupBuyCols} />
+      {/* <TabComponent products={groupBuyData} col={groupBuyCols} /> */}
+      <TabComponent
+        col={groupBuyCols}
+        activeData={activeData.results}
+        pastData={activeData.results}
+      />
     </section>
   );
 };
