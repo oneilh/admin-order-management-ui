@@ -15,7 +15,7 @@ const Card_Info_Right = ({
   location_contact,
 }: CardInfo_Left_Props) => {
   return (
-    <div className="grow flex flex-col gap-2 border border-gray-200 p-2 rounded-xl font-semibold">
+    <div className="grow-2 flex flex-col gap-2 border border-gray-200 p-2 rounded-xl font-semibold">
       <div className="flex items-center gap-2 bg-gray-300/30 p-4 rounded-t-xl">
         <h3 className=" text-gray-500">Pickup Location</h3>
       </div>

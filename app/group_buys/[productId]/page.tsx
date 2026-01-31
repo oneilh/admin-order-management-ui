@@ -44,13 +44,13 @@ const ProductPage = async ({ params }: ProductPageProps) => {
       </section>
       <Order_Details_Stats order_count={order_cnt} />
 
-      <section className="flex gap-4 flex-wrap md:flex-nowrap ">
+      <section className="flex gap-8 flex-wrap">
         {orders.map((data: any, index: string) => {
           order_cnt = Number(index) + 1;
           return (
             <section
               key={data.id}
-              className="flex flex-col gap-4 p-4 border border-gray-300 rounded-2xl"
+              className="w-full max-w-[800px] flex flex-col gap-4 p-4 border border-gray-300 rounded-2xl"
             >
               <Card_Head
                 id={data.id}
@@ -58,7 +58,7 @@ const ProductPage = async ({ params }: ProductPageProps) => {
                 date={data.created_at}
                 status={data.status_display_text}
               />
-              <section className="flex gap-4 flex-wrap md:flex-nowrap">
+              <section className="flex flex-wrap gap-4 lg:grid lg:grid-cols-2">
                 <Card_Info_Left
                   first_name={data.user?.first_name}
                   last_name={data.user?.last_name}

@@ -20,7 +20,7 @@ const Card_Info_Left = ({
   phonenumber
 }: CardInfo_Left_Props) => {
   return (
-    <section className="grow flex flex-col gap-6">
+    <section className="grow-2 flex flex-col gap-6">
       <div className="flex justify-between gap-6 border border-indigo-300 bg-indigo-300/40 p-4 rounded-2xl text-indigo-800">
         <section className="flex flex-col gap-2 justify-between">
           <div className="flex gap-2 items-center text-lg font-semibold">
