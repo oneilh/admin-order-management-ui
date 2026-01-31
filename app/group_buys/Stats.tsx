@@ -48,12 +48,12 @@ const Stats = ({
         return (
           <section
             key={stat.title}
-            className="flex justify-between grow border border-gray-300 p-6 rounded-xl items-center"
+            className="flex gap-6 justify-between grow border border-gray-300 p-6 rounded-xl items-center"
           >
             {stat.icon}
             <div className="flex flex-col gap-2">
               <p className="font-semibold text-neutral-600">{stat.title}</p>
-              <p className="text-2xl font-bold">
+              <p className="text-2xl font-bold text-end">
                 {stat.amount.toLocaleString()}
               </p>
             </div>

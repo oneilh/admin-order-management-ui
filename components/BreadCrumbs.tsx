@@ -5,7 +5,7 @@ const BreadCrumbs = ({ isGroupBuy = false }: { isGroupBuy?: boolean }) => {
     <div className="breadcrumbs text-sm">
       <ul>
         <li>
-          <Link href={isGroupBuy ? "/groupBuys" : "/singleBuys"}>
+          <Link href={isGroupBuy ? "/group_buys" : "/singleBuys"}>
             {isGroupBuy ? "GroupBuys Products" : "SingleBuys Products"}
           </Link>
         </li>

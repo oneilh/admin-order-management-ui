@@ -13,7 +13,7 @@ type TableRowsProps = {
 
 const GroupBuyRows = ({ data }: TableRowsProps) => {
   const goToPage = (id: string) => {
-    router.push(`/groupBuys/${id}`);
+    router.push(`/group_buys/${id}`);
   };
 
   const router = useRouter();

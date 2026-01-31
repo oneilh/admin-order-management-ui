@@ -6,9 +6,9 @@ import { GroupBuyType } from "@/Types/groupOrderBuy";
 import { TableColumnType } from "@/Types/tableColumnType";
 import Table from "../Layout/table/Table";
 import TableRows from "../Layout/table/TableRows";
-import GroupBuyRows from "@/app/groupBuys/GroupBuyRows";
-import Stats from "@/app/groupBuys/Stats";
-import { getCampaignStats } from "@/app/groupBuys/campaignStats";
+import GroupBuyRows from "@/app/group_buys/GroupBuyRows";
+import Stats from "@/app/group_buys/Stats";
+import { getCampaignStats } from "@/app/group_buys/campaignStats";
 
 type TabComponentProps = {
   products?: GroupBuyType[];

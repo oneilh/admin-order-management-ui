@@ -1,35 +1,3 @@
-// import { MdErrorOutline } from "react-icons/md";
-// import { RiLoader4Line } from "react-icons/ri";
-// import { LiaTruckMovingSolid } from "react-icons/lia";
-
-// const Badge = ({status}) => {
-//   const status = [
-//     {
-//       title: "Ready",
-//       status_type: "ready",
-//       icon: <LiaTruckMovingSolid />,
-//     },
-//     {
-//       title: "Processing",
-//       status_type: "processing",
-//       icon: <RiLoader4Line />,
-//     },
-//     {
-//       title: "Failed",
-//       status_type: "failed",
-//       icon: <MdErrorOutline />,
-//     },
-//   ];
-//   return (
-//     <div className="w-fit py-1 px-3 flex items-center gap-2 bg-green-200/30 rounded-2xl text-green-900 border border-green-900/60">
-//       {status[0].icon}
-//       <p>{status[0].title}</p>
-//     </div>
-//   );
-// };
-
-// export default Badge;
-
 import { MdErrorOutline } from "react-icons/md";
 import { RiLoader4Line } from "react-icons/ri";
 import { LiaTruckMovingSolid } from "react-icons/lia";
@@ -75,7 +43,7 @@ const Badge = ({ status }: BadgeProps) => {
 
   return (
     <div
-      className={`w-fit py-1 px-3 flex items-center gap-2 rounded-2xl border ${badge.bgColor} ${badge.textColor} ${badge.borderColor}`}
+      className={`w-fit py-1 px-3 flex items-center gap-2 rounded-2xl border ${badge.bgColor} ${badge.textColor} ${badge.borderColor} cursor-pointer`}
     >
       {badge.icon}
       <p>{badge.title}</p>
