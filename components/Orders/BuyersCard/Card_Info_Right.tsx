@@ -39,7 +39,7 @@ const Card_Info_Right = ({
         </div>
       </div>
       <div className="flex gap-2 items-center p-3 border-t border-t-gray-200">
-        <IoCallOutline className="text-xl" />
+        <IoCallOutline className="text-xl text-gray-500" />
 
         <div className="flex flex-col gap-0.5">
           <p className="text-gray-500 ">LOCATION CONTACT</p>

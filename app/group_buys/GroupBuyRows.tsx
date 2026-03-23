@@ -2,7 +2,7 @@
 import Product from "@/components/Layout/table/table_components/Product";
 import Timeline from "@/components/Layout/table/table_components/Timeline";
 import Progress from "@/components/Layout/table/table_components/Progress";
-import Badge from "@/components/Layout/table/table_components/Badge";
+import Badge from "@/components/Badge";
 import { CgMore } from "react-icons/cg";
 import { useRouter, usePathname } from "next/navigation";
 import AmountCollected from "@/components/Layout/table/table_components/AmountCollected";

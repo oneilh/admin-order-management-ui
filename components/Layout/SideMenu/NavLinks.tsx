@@ -3,19 +3,18 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaBagShopping, FaUserGroup } from "react-icons/fa6";
 import { IoSettingsSharp } from "react-icons/io5";
-import Avatar from "./Avatar";
 
 const NavLinks = () => {
   const routes = [
     {
       name: "Single Buys",
       icon: <FaBagShopping className="text-lg" />,
-      route: "/singleBuys",
+      route: "/single_buys",
     },
     {
       name: "Group Buys",
       icon: <FaUserGroup className="text-lg" />,
-      route: "/groupBuys",
+      route: "/group_buys",
     },
     {
       name: "Settings",
@@ -46,7 +45,6 @@ const NavLinks = () => {
         );
       })}
 
-      {/* <Avatar/> */}
     </nav>
   );
 };

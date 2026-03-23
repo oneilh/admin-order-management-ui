@@ -23,7 +23,7 @@ const ProductPage = async ({ params }: ProductPageProps) => {
   // If data.results is undefined, fallback to empty array to avoid errors
   const orders = data?.results || [];
 
-  let order_cnt;
+  let order_cnt= orders.length;
   return (
     <div className="w-full flex flex-col gap-8">
       <BreadCrumbs isGroupBuy={true} />
@@ -46,7 +46,6 @@ const ProductPage = async ({ params }: ProductPageProps) => {
 
       <section className="flex gap-8 flex-wrap">
         {orders.map((data: any, index: string) => {
-          order_cnt = Number(index) + 1;
           return (
             <section
               key={data.id}

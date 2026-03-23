@@ -1,4 +1,4 @@
-import Badge from "../../Layout/table/table_components/Badge";
+import Badge from "../../Badge";
 import { IoIosArrowUp } from "react-icons/io";
 type Card_Head_Props = {
   id: string;

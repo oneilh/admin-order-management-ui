@@ -20,11 +20,11 @@ const SingleBuyPage = async () => {
         <p>{pageInfo.description}</p>
       </TitleHeader>
 
-        <TabComponent
-      
+      {/* <TabComponent
+        col={singleBuyCols}
         activeData={activeData.results}
         pastData={pastData.results}
-      />
+      /> */}
     </section>
   );
 };

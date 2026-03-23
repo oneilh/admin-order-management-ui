@@ -43,7 +43,7 @@ const Badge = ({ status }: BadgeProps) => {
 
   return (
     <div
-      className={`w-fit py-1 px-3 flex items-center gap-2 rounded-2xl border ${badge.bgColor} ${badge.textColor} ${badge.borderColor} cursor-pointer`}
+      className={`w-fit px-2 flex items-center gap-2 rounded-lg border ${badge.bgColor} ${badge.textColor} ${badge.borderColor} cursor-pointer`}
     >
       {badge.icon}
       <p>{badge.title}</p>
