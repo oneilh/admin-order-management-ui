@@ -1,4 +1,4 @@
-import TitleHeader from "../../components/TitleHeader";
+import TitleHeader from "../../../components/TitleHeader";
 import { singleBuyData } from "@/data/singlebuy";
 import { singleBuyCols } from "@/data/singleBuy_prod_and_users_columns";
 import TabComponent from "@/components/tab/TabComponent";
