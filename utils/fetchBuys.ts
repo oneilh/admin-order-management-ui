@@ -1,4 +1,4 @@
-import { ACCESS_TOKEN, BASE_URL } from "./auth";
+import { getAccessToken, BASE_URL } from "./auth";
 
 type QryParam = "PAST" | "ACTIVE";
 
@@ -11,7 +11,7 @@ export const getBuys = async (
 
   const res = await fetch(url, {
     headers: {
-      Authorization: ACCESS_TOKEN, // backend said no Bearer needed
+      Authorization: getAccessToken(), // backend said no Bearer needed
     },
   });
 

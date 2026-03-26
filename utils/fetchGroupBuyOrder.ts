@@ -1,11 +1,11 @@
-import { ACCESS_TOKEN, BASE_URL } from "./auth";
+import { getAccessToken, BASE_URL } from "./auth";
 
 export const getGroupBuyOrders = async (id: number) => {
   const url = `${BASE_URL}/sub-admin/v1/group-buy-orders/?id=${id}`;
 
   const res = await fetch(url, {
     headers: {
-      Authorization: ACCESS_TOKEN,
+      Authorization: getAccessToken(),
     },
   });
 
