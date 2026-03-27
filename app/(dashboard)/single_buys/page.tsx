@@ -1,7 +1,7 @@
 import SingleBuysClient from "./SingleBuysClient";
 
 const SingleBuyPage = async () => {
-	<SingleBuysClient />
+    return <SingleBuysClient />;
 };
 
 export default SingleBuyPage;
