@@ -2,9 +2,12 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { getAccessToken, BASE_URL } from "@/utils/auth";
+import { SingleBuyType, PaginatedResponse } from "@/Types/singleOrder";
+import { singleBuyCols } from "@/data/singleBuy_prod_and_users_columns";
+import Table from "@/components/Layout/table/Table";
 
 // The function that fetches single buys from our proxy
-const fetchSingleBuys = async () => {
+const fetchSingleBuys = async (): Promise<PaginatedResponse<SingleBuyType>> => {
     const response = await fetch("/api/single-buys", {
         headers: {
             Authorization: getAccessToken(), // reads from localstorage
@@ -27,10 +30,15 @@ const SingleBuysClient = () => {
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error Loading single buys...</p>;
     return (
-		<div>
-			<pre>{JSON.stringify(data, null, 2)}</pre>
-		</div>
-	);
+        <section className="flex flex-col gap-6">
+            <div>
+                <h1 className="text-2xl font-semibold">Single Buys</h1>
+                <p className="text-gray-500">
+                    Manage individual purchase orders
+                </p>
+            </div>
+        </section>
+    );
 };
 
 export default SingleBuysClient;
