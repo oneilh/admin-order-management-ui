@@ -19,7 +19,7 @@ const NavLinks = () => {
     {
       name: "Settings",
       icon: <IoSettingsSharp className="text-lg" />,
-      route: "/",
+      route: "/settings",
     },
   ];
 
