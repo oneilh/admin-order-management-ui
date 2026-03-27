@@ -1,20 +1,47 @@
-export type BuyerType = {
-  buyer_id: number;
-  name: string;
-  email: string;
-  qty: number;
-  amount_paid: string; // keep as string since price has "$"
-  order_date: string;
-  order_status: string;
-  payment_status: string;
+export type PickupLocationType = {
+    id: number;
+    state: string;
+    public_address: string;
+    private_address: string;
+    phonenumber: string;
 };
+export type SingleBuyUserType = {
+    first_name: string;
+    last_name: string;
+};
+export type SingleBuyProductType = {
+    url: string;
+    name: string;
+    image: string;
+};
+
 export type SingleBuyType = {
-  id: string;
-  product_name: string;
-  no_of_buyers: number;
-  price: string; // keep string like "$25"
-  description: string;
-  created_at: string;
-  status: string;
-  buyers: BuyerType[]; // array of buyers
+    id: number;
+    unit: string;
+    unit_name: string;
+    created_at: string;
+    quantity: number;
+    price: string; // keep string like "$25"
+    total_price: string;
+    creator_commission_fee: string | null;
+    creator_commission_settled: boolean;
+    platform_net_revenue: string | null;
+    order_id: string;
+    single_buy_status: "SUCCESSFUL" | "PENDING" | "FAILED";
+    single_buy_status_reason: string;
+    single_buy_allow_refund_withdrawal: boolean;
+    phonenumber: string;
+    pickup_location: PickupLocationType;
+    general_order_status: string | null;
+    status_display_text: string | null;
+    general_order_status_timestamp: string | null;
+    user: SingleBuyUserType;
+    product: SingleBuyProductType;
+};
+
+// This is the type for the response we get from the API when we fetch single buys
+export type PaginatedResponse<T> = { // The <T> means this is a generic type, we can specify what type of results we want when we use it
+    results: T[];
+    next: string | null;
+    previous: string | null;
 };
