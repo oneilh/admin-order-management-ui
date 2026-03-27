@@ -1,19 +1,15 @@
-import { Column } from "../../../data/Columns";
+import { TableColumnType } from "@/Types/tableColumnType";
 
 type TheadProps = {
-  columns: Column[];
-  showStatus?: boolean;
+  columns: TableColumnType[];
 };
 
-const Thead = ({ columns, showStatus = false }: TheadProps) => {
-  const visibleColumns = !showStatus
-    ? columns
-    : columns.filter((column) => column.key !== "status");
+const Thead = ({ columns } : TheadProps) => {
 
   return (
     <thead>
       <tr>
-        {visibleColumns.map((column) => (
+        {columns.map((column) => (
           <th key={column.key}>{column.label}</th>
         ))}
       </tr>
