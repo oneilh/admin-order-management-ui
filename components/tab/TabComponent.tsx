@@ -5,7 +5,6 @@ import { Tabs } from "@mantine/core";
 import { GroupBuyType } from "@/Types/groupOrderBuy";
 import { TableColumnType } from "@/Types/tableColumnType";
 import Table from "../Layout/table/Table";
-import TableRows from "../Layout/table/TableRows";
 import GroupBuyRows from "@/app/(dashboard)/group_buys/GroupBuyRows";
 import Stats from "@/app/(dashboard)/group_buys/Stats";
 import { getCampaignStats } from "@/app/(dashboard)/group_buys/campaignStats";
