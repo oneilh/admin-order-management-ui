@@ -1,6 +1,6 @@
 "use client";
 
-import { setTokens, BASE_URL } from "@/utils/auth";
+import { setTokens } from "@/utils/auth";
 import { useState } from "react";
 
 export default function Page() {
@@ -17,7 +17,7 @@ export default function Page() {
         setError(""); // clear any previous console.error
 
         try {
-            const response = await fetch(`${BASE_URL}/sub-admin/v1/login/`, {
+            const response = await fetch(`/api/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json", // telling API we're sending JSON
