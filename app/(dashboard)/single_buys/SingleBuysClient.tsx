@@ -1,6 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { getAccessToken, BASE_URL } from "@/utils/auth";
 import { SingleBuyType, PaginatedResponse } from "@/Types/singleOrder";
 import { singleBuyCols } from "@/data/singleBuy_prod_and_users_columns";
@@ -28,6 +29,8 @@ const SingleBuysClient = () => {
         queryFn: fetchSingleBuys, // function to call
     });
 
+    const router = useRouter();
+
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error Loading single buys...</p>;
     return (
@@ -43,6 +46,7 @@ const SingleBuysClient = () => {
                     <tr
                         key={order.id}
                         className="cursor-pointer hover:bg-gray-50"
+                        onClick={() => router.push(`/single_buys/${order.id}`)}
                     >
                         {/* Product: image + name */}
                         <td>
