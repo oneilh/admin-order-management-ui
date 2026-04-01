@@ -27,7 +27,15 @@ export type SingleBuyType = {
     creator_commission_settled: boolean;
     platform_net_revenue: string | null;
     order_id: string;
-    single_buy_status: "SUCCESSFUL" | "PENDING" | "FAILED";
+    single_buy_status:
+        | "SUCCESSFUL"
+        | "PROCESSING"
+        | "SHIPPING"
+        | "PACKAGING"
+        | "READY_FOR_PICKUP"
+        | "FAILED_PROCESSING"
+        | "FAILED_SHIPPING"
+        | "DELIVERED";
     single_buy_status_reason: string;
     single_buy_allow_refund_withdrawal: boolean;
     phonenumber: string;
@@ -39,8 +47,18 @@ export type SingleBuyType = {
     product: SingleBuyProductType;
 };
 
+export type SingleBuyStatusAction =
+    | "PROCESSING"
+    | "SHIPPING"
+    | "PACKAGING"
+    | "READY_FOR_PICKUP"
+    | "FAILED_PROCESSING"
+    | "FAILED_SHIPPING"
+    | "DELIVERED";
+
 // This is the type for the response we get from the API when we fetch single buys
-export type PaginatedResponse<T> = { // The <T> means this is a generic type, we can specify what type of results we want when we use it
+export type PaginatedResponse<T> = {
+    // The <T> means this is a generic type, we can specify what type of results we want when we use it
     results: T[];
     next: string | null;
     previous: string | null;

@@ -47,7 +47,7 @@ const SingleBuysClient = () => {
                         key={order.id}
                         className="cursor-pointer hover:bg-gray-50"
                         onClick={() => router.push(`/single_buys/${order.id}`)}
-                    >
+                    >	
                         {/* Product: image + name */}
                         <td>
                             <div className="flex items-center gap-3">
@@ -84,7 +84,7 @@ const SingleBuysClient = () => {
                 ${
                     order.single_buy_status === "SUCCESSFUL"
                         ? "bg-green-100 text-green-700"
-                        : order.single_buy_status === "FAILED"
+                        : order.single_buy_status === "FAILED_PROCESSING"
                           ? "bg-red-100 text-red-700"
                           : "bg-yellow-100 text-yellow-700"
                 }
