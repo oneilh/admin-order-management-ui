@@ -2,8 +2,13 @@
 
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getAccessToken } from "@/utils/auth";
-import { SingleBuyType, PaginatedResponse } from "@/Types/singleOrder";
+import {
+    SingleBuyType,
+    PaginatedResponse,
+    SingleBuyStatusAction,
+} from "@/Types/singleOrder";
 import Image from "next/image";
+import { useState } from "react";
 
 // Reuse the same fetch query function — React Query deduplicates requests
 const fetchSingleBuys = async (): Promise<PaginatedResponse<SingleBuyType>> => {
@@ -24,19 +29,74 @@ type Props = {
 };
 
 export default function SingleBuyDetailClient({ id }: Props) {
+    const queryClient = useQueryClient();
+
+    const [selectedAction, setSelectedAction] = useState<
+        SingleBuyStatusAction | ""
+    >("");
+    const [updating, setUpdating] = useState(false);
+    const [updateError, setUpdateError] = useState("");
+    const [updateSuccess, setUpdateSuccess] = useState(false);
+
     const {
         data: order,
         isLoading,
         error,
     } = useQuery({
-        queryKey: ["singleBuy"], // same key as list page — shares cache
+        queryKey: ["singleBuys"], // same key as list page — shares cache
         queryFn: fetchSingleBuys, // same function as list page
-        select: (data) => data.results.find((o) => o.id === id),
+        staleTime: 0,
+        select: (data) => data.results.find((ord) => ord.id === id),
     });
 
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error loading order</p>;
     if (!order) return <p>Order not found</p>;
+
+    const handleStatusUpdate = async () => {
+        if (!selectedAction) return;
+
+        setUpdating(true);
+        setUpdateError("");
+        setUpdateSuccess(false);
+
+        try {
+            const response = await fetch("/api/update-single-buy-status", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: getAccessToken(),
+                },
+                body: JSON.stringify({ id: order.id, action: selectedAction }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                setUpdateError(data.message || "Failed to update status");
+                return;
+            }
+            setUpdateSuccess(true);
+            queryClient.setQueryData<PaginatedResponse<SingleBuyType>>(
+                ["singleBuys"],
+                (oldData) => {
+                    if (!oldData) return oldData;
+                    return {
+                        ...oldData,
+                        results: oldData.results.map((ord) =>
+                            ord.id === id
+                                ? { ...ord, single_buy_status: selectedAction }
+                                : ord,
+                        ),
+                    };
+                },
+            );
+        } catch (_err) {
+            setUpdateError("Something went wrong. Please try again.");
+        } finally {
+            setUpdating(false);
+        }
+    };
 
     return (
         <section className="flex flex-col gap-6">
@@ -105,6 +165,47 @@ export default function SingleBuyDetailClient({ id }: Props) {
                 <p className="text-gray-500">
                     {order.pickup_location.phonenumber}
                 </p>
+            </div>
+
+            {/* Status Update */}
+            <div className="p-4 border rounded-lg flex flex-col gap-3">
+                <p className="text-sm text-gray-500">Update Status</p>
+
+                <select
+                    value={selectedAction}
+                    onChange={(e) =>
+                        setSelectedAction(
+                            e.target.value as SingleBuyStatusAction,
+                        )
+                    }
+                    className="border rounded px-3 py-2 text-sm w-full"
+                >
+                    <option value="">Select new status...</option>
+                    <option value="PROCESSING">Processing</option>
+                    <option value="SHIPPING">Shipping</option>
+                    <option value="PACKAGING">Packaging</option>
+                    <option value="READY_FOR_PICKUP">Ready For Pickup</option>
+                    <option value="FAILED_PROCESSING">Failed Processing</option>
+                    <option value="FAILED_SHIPPING">Failed Shipping</option>
+                    <option value="DELIVERED">Delivered</option>
+                </select>
+
+                {updateError && (
+                    <p className="text-red-500 text-sm">{updateError}</p>
+                )}
+                {updateSuccess && (
+                    <p className="text-green-500 text-sm">
+                        Status updated successfully.
+                    </p>
+                )}
+
+                <button
+                    onClick={handleStatusUpdate}
+                    disabled={updating || !selectedAction}
+                    className="bg-blue-500 text-white px-4 py-2 rounded text-sm disabled:opacity-50"
+                >
+                    {updating ? "Updating..." : "Update Status"}
+                </button>
             </div>
         </section>
     );
