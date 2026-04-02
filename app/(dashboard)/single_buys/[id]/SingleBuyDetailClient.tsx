@@ -10,6 +10,18 @@ import {
 import Image from "next/image";
 import { useState } from "react";
 
+// status style
+const statusStyles: Record<string, string> = {
+    SUCCESSFUL: "bg-green-100 text-green-700",
+    DELIVERED: "bg-green-100 text-green-700",
+    PROCESSING: "bg-blue-100 text-blue-700",
+    PACKAGING: "bg-blue-100 text-blue-700",
+    SHIPPING: "bg-purple-100 text-purple-700",
+    READY_FOR_PICKUP: "bg-yellow-100 text-yellow-700",
+    FAILED_PROCESSING: "bg-red-100 text-red-700",
+    FAILED_SHIPPING: "bg-red-100 text-red-700",
+};
+
 // Reuse the same fetch query function — React Query deduplicates requests
 const fetchSingleBuys = async (): Promise<PaginatedResponse<SingleBuyType>> => {
     const response = await fetch("/api/single-buys", {
@@ -73,7 +85,7 @@ export default function SingleBuyDetailClient({ id }: Props) {
             const data = await response.json();
 
             if (!response.ok) {
-                setUpdateError(data.message || "Failed to update status");
+                setUpdateError(data.msg || data.message || "Failed to update status");
                 return;
             }
             setUpdateSuccess(true);
@@ -151,7 +163,12 @@ export default function SingleBuyDetailClient({ id }: Props) {
                 </div>
                 <div>
                     <p className="text-sm text-gray-500">Status</p>
-                    <p className="font-medium">{order.single_buy_status}</p>
+                    <p className={`
+                px-2 py-1 rounded-full text-xs font-semibold
+                ${statusStyles[order.single_buy_status] ?? "bg-gray-100 text-gray-700"}
+              `}>
+                        {order.single_buy_status}
+                    </p>
                 </div>
             </div>
 

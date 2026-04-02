@@ -8,6 +8,18 @@ import { singleBuyCols } from "@/data/singleBuy_prod_and_users_columns";
 import Table from "@/components/Layout/table/Table";
 import Image from "next/image";
 
+// status style
+const statusStyles: Record<string, string> = {
+    SUCCESSFUL: "bg-green-100 text-green-700",
+    DELIVERED: "bg-green-100 text-green-700",
+    PROCESSING: "bg-blue-100 text-blue-700",
+    PACKAGING: "bg-blue-100 text-blue-700",
+    SHIPPING: "bg-purple-100 text-purple-700",
+    READY_FOR_PICKUP: "bg-yellow-100 text-yellow-700",
+    FAILED_PROCESSING: "bg-red-100 text-red-700",
+    FAILED_SHIPPING: "bg-red-100 text-red-700",
+};
+
 // The function that fetches single buys from our proxy
 const fetchSingleBuys = async (): Promise<PaginatedResponse<SingleBuyType>> => {
     const response = await fetch("/api/single-buys", {
@@ -47,7 +59,7 @@ const SingleBuysClient = () => {
                         key={order.id}
                         className="cursor-pointer hover:bg-gray-50"
                         onClick={() => router.push(`/single_buys/${order.id}`)}
-                    >	
+                    >
                         {/* Product: image + name */}
                         <td>
                             <div className="flex items-center gap-3">
@@ -81,13 +93,7 @@ const SingleBuysClient = () => {
                             <span
                                 className={`
                 px-2 py-1 rounded-full text-xs font-semibold
-                ${
-                    order.single_buy_status === "SUCCESSFUL"
-                        ? "bg-green-100 text-green-700"
-                        : order.single_buy_status === "FAILED_PROCESSING"
-                          ? "bg-red-100 text-red-700"
-                          : "bg-yellow-100 text-yellow-700"
-                }
+                ${statusStyles[order.single_buy_status] ?? "bg-gray-100 text-gray-700"}
               `}
                             >
                                 {order.single_buy_status}
