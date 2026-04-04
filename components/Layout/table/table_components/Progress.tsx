@@ -26,13 +26,13 @@
 type ProgressProps = {
   current: string;
   goal: string;
-  percent: string;
+  percent: number;
 };
 
 const Progress = ({ current, goal, percent }: ProgressProps) => {
   const currentValue = Number(current);
   const goalValue = Number(goal);
-  const percentage = Number(percent);
+  const percentage = percent;
 
   const getProgressColor = () => {
     if (percentage >= 100) return "progress-success";
