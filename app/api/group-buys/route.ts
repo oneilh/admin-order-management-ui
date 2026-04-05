@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { BASE_URL } from "@/utils/auth";
-import { SearchParamsContext } from "next/dist/shared/lib/hooks-client-context.shared-runtime";
 
 export async function GET(req: NextRequest) {
     try {
