@@ -4,15 +4,16 @@ import Timeline from "@/components/Layout/table/table_components/Timeline";
 import Progress from "@/components/Layout/table/table_components/Progress";
 import Badge from "@/components/Badge";
 import { CgMore } from "react-icons/cg";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import AmountCollected from "@/components/Layout/table/table_components/AmountCollected";
 import RefundableStatus from "@/components/Layout/table/table_components/RefundableStatus";
+import { GroupBuy } from "@/Types/groupBuy";
 type TableRowsProps = {
-  data?: any[];
+  data?: GroupBuy[];
 };
 
 const GroupBuyRows = ({ data }: TableRowsProps) => {
-  const goToPage = (id: string) => {
+  const goToPage = (id: number) => {
     router.push(`/group_buys/${id}`);
   };
 
@@ -32,8 +33,7 @@ const GroupBuyRows = ({ data }: TableRowsProps) => {
             <td>
               <Product
                 id={item.id}
-                name={item.product.name}
-                imageUrl={item.product.image}
+                product={item.product}
               />
             </td>
             <td>
