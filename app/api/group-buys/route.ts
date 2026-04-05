@@ -28,10 +28,8 @@ export async function GET(req: NextRequest) {
         const contentType = response.headers.get("content-type");
         if (contentType?.includes("application/json")) {
             data = await response.json();
-            console.log("API response:", data); // ← add this
         } else {
             const text = await response.text();
-            console.log("API response text:", text); // ← add this
             data = { message: text || "No response body" };
         }
         return NextResponse.json(data, { status: response.status });
