@@ -4,9 +4,9 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getAccessToken } from "@/utils/auth";
 import {
     SingleBuyType,
-    PaginatedResponse,
     SingleBuyStatusAction,
 } from "@/Types/singleOrder";
+import { PaginatedResponse } from "@/Types/common";
 import Image from "next/image";
 import { useState } from "react";
 

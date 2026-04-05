@@ -3,7 +3,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { getAccessToken, BASE_URL } from "@/utils/auth";
-import { SingleBuyType, PaginatedResponse } from "@/Types/singleOrder";
+import { SingleBuyType } from "@/Types/singleOrder";
+import { PaginatedResponse } from "@/Types/common";
 import { singleBuyCols } from "@/data/singleBuy_prod_and_users_columns";
 import Table from "@/components/Layout/table/Table";
 import Image from "next/image";
