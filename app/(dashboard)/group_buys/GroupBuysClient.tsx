@@ -2,8 +2,10 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { getAccessToken } from "@/utils/auth";
+import { GroupBuy } from "@/Types/groupBuy";
+import { PaginatedResponse } from "@/Types/common";
 
-const fetchGroupBuys = async () => {
+const fetchGroupBuys = async (): Promise<PaginatedResponse<GroupBuy>> => {
     const response = await fetch("/api/group-buys?type=ACTIVE", {
         headers: {
             Authorization: getAccessToken(),
