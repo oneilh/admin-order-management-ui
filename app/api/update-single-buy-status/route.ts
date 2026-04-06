@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
             },
         );
 
-        // 5. Handle backend response robustly
+        // Handle backend response robustly
         let data;
         const contentType = response.headers.get("content-type");
 
@@ -49,10 +49,10 @@ export async function POST(req: NextRequest) {
             data = { message: text || "No response body" };
         }
 
-        // 6. Return response cleanly
+        // Return response cleanly
         return NextResponse.json(data, { status: response.status });
     } catch (error) {
-        // 7. Catch network / unexpected crashes
+        // Catch any network / unexpected crashes
         console.error("API route error:", error);
 
         return NextResponse.json(
