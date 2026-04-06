@@ -1,10 +1,5 @@
-export type PickupLocationType = {
-    id: number;
-    state: string;
-    public_address: string;
-    private_address: string;
-    phonenumber: string;
-};
+import { PickupLocationType } from "./common";
+
 export type SingleBuyUserType = {
     first_name: string;
     last_name: string;

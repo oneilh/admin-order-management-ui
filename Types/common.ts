@@ -8,3 +8,11 @@ export type PaginatedResponse<T> = {
     next: string | null;
     previous: string | null;
 };
+
+export type PickupLocationType = {
+    id: number;
+    state: string;
+    public_address: string;
+    private_address: string;
+    phonenumber: string;
+};
