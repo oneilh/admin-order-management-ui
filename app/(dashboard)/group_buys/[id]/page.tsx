@@ -9,7 +9,7 @@ export default async function GroupBuyDetailPage({ params }: Props) {
 
 	return (
 		<div>
-			<h1>Group Buy Detail - {id}</h1>
+			<h1>Group Buy Detail - ID: {id}</h1>
 			<GroupBuyDetailClient id={Number(id)} />
 		</div>
 	)
