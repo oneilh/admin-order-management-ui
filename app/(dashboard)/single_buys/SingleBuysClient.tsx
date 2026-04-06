@@ -2,9 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { getAccessToken, BASE_URL } from "@/utils/auth";
-import { SingleBuyType } from "@/Types/singleOrder";
-import { PaginatedResponse } from "@/Types/common";
+import { fetchSingleBuys } from "@/utils/fetchBuys";
 import { singleBuyCols } from "@/data/singleBuy_prod_and_users_columns";
 import Table from "@/components/Layout/table/Table";
 import Image from "next/image";
@@ -19,21 +17,6 @@ const statusStyles: Record<string, string> = {
     READY_FOR_PICKUP: "bg-yellow-100 text-yellow-700",
     FAILED_PROCESSING: "bg-red-100 text-red-700",
     FAILED_SHIPPING: "bg-red-100 text-red-700",
-};
-
-// The function that fetches single buys from our proxy
-const fetchSingleBuys = async (): Promise<PaginatedResponse<SingleBuyType>> => {
-    const response = await fetch("/api/single-buys", {
-        headers: {
-            Authorization: getAccessToken(), // reads from localstorage
-        },
-    });
-
-    if (!response.ok) {
-        throw new Error("Failed to fetch single buys");
-    }
-
-    return response.json();
 };
 
 const SingleBuysClient = () => {
