@@ -1,6 +1,7 @@
 "use client";
 
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { fetchSingleBuys } from "@/utils/fetchBuys";
 import { getAccessToken } from "@/utils/auth";
 import {
     SingleBuyType,
@@ -20,20 +21,6 @@ const statusStyles: Record<string, string> = {
     READY_FOR_PICKUP: "bg-yellow-100 text-yellow-700",
     FAILED_PROCESSING: "bg-red-100 text-red-700",
     FAILED_SHIPPING: "bg-red-100 text-red-700",
-};
-
-// Reuse the same fetch query function — React Query deduplicates requests
-const fetchSingleBuys = async (): Promise<PaginatedResponse<SingleBuyType>> => {
-    const response = await fetch("/api/single-buys", {
-        headers: {
-            Authorization: getAccessToken(),
-        },
-    });
-
-    if (!response.ok) {
-        throw new Error("Failed to fetch single buys");
-    }
-    return response.json();
 };
 
 type Props = {
