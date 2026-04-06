@@ -1,24 +1,11 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { getAccessToken } from "@/utils/auth";
-import 
+import { fetchGroupBuyOrders, fetchGroupBuys } from "@/utils/fetchBuys";
 
 type Props = {
     id: number;
 };
-
-const fetchGroupBuys = async () => {
-	const response = await fetch("/api/group-buys?type=ACTIVE", {
-		headers : {
-			Authorization: getAccessToken()
-		}
-	})
-	if(!response.ok) {
-		throw new Error("Failed to fetch group buys")
-	}
-	return response.json()
-}
 
 const GroupBuyDetailClient = ({ id }: Props) => {
     const { data: group } = useQuery({
@@ -31,7 +18,14 @@ const GroupBuyDetailClient = ({ id }: Props) => {
         queryKey: ["groupBuyOrders", id], // includes id so each group has its own cache
         queryFn: () => fetchGroupBuyOrders(id),
     });
-    return <div>GroupBuyDetailClient</div>;
+    return (
+        <div>
+            <h2>Group Info:</h2>
+            <pre>{JSON.stringify(group, null, 2)}</pre>
+            <h2>Orders:</h2>
+            <pre>{JSON.stringify(orders, null, 2)}</pre>
+        </div>
+    );
 };
 
 export default GroupBuyDetailClient;
