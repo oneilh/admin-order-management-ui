@@ -1,6 +1,7 @@
 import { getAccessToken } from "./auth";
 import { PaginatedResponse } from "@/Types/common";
 import { GroupBuy } from "@/Types/groupBuy";
+import { GroupBuyOrderType } from "@/Types/groupBuyOrder";
 import { SingleBuyType } from "@/Types/singleOrder";
 
 export const fetchGroupBuys = async (): Promise<
@@ -16,7 +17,9 @@ export const fetchGroupBuys = async (): Promise<
     return response.json();
 };
 
-export const fetchGroupBuyOrders = async (id: number) => {
+export const fetchGroupBuyOrders = async (
+    id: number,
+): Promise<PaginatedResponse<GroupBuyOrderType>> => {
     const response = await fetch(`/api/group-buy-orders?id=${id}`, {
         headers: {
             Authorization: getAccessToken(),
