@@ -16,6 +16,17 @@ export const fetchGroupBuys = async (): Promise<
     return response.json();
 };
 
+export const fetchGroupBuyOrders = async (id: number) => {
+    const response = await fetch(`/api/group-buy-orders?id=${id}`, {
+        headers: {
+            Authorization: getAccessToken(),
+        },
+    });
+
+    if (!response.ok) throw new Error("Failed to fetch group buy orders");
+    return response.json();
+};
+
 export const fetchSingleBuys = async (): Promise<
     PaginatedResponse<SingleBuyType>
 > => {
