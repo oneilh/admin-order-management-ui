@@ -1,4 +1,13 @@
-export type GroupBuyStatus = "ACTIVE" | "FAILED" | "SUCCESSFUL";
+export type GroupBuyStatus =
+    | "ACTIVE"
+    | "FAILED"
+    | "SUCCESSFUL"
+    | "PROCESSING"
+    | "SHIPPING"
+    | "PACKAGING"
+    | "READY_FOR_PICKUP"
+    | "FAILED_PROCESSING"
+    | "FAILED_SHIPPING";
 
 export type GroupBuyStatusReason =
     | "ACTIVE_RUNNING"
