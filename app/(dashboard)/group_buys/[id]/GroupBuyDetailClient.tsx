@@ -77,6 +77,7 @@ const GroupBuyDetailClient = ({ id }: Props) => {
                 setUpdateError(
                     data.msg || data.message || "Failed to update status",
                 );
+                return;
             }
 
             setUpdateSuccess(true);
@@ -84,11 +85,14 @@ const GroupBuyDetailClient = ({ id }: Props) => {
                 ["groupBuys"],
                 (oldData) => {
                     if (!oldData) return oldData;
-                    results: oldData.results.map((s) =>
-                        s.id === group.id
-                            ? { ...s, group_buy_status: selectedAction }
-                            : s,
-                    );
+                    return {
+                        ...oldData,
+                        results: oldData.results.map((s) =>
+                            s.id === group.id
+                                ? { ...s, group_buy_status: selectedAction }
+                                : s,
+                        ),
+                    };
                 },
             );
         } catch (_err) {
