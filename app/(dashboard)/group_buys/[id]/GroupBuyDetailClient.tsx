@@ -2,6 +2,7 @@
 
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { fetchGroupBuyOrders, fetchGroupBuys } from "@/utils/fetchBuys";
 import { GroupBuyStatusAction } from "@/Types/groupBuy";
 import { PaginatedResponse } from "@/Types/common";
@@ -12,12 +13,15 @@ import Timeline from "@/components/Layout/table/table_components/Timeline";
 import Progress from "@/components/Layout/table/table_components/Progress";
 import Badge from "@/components/Badge";
 import AmountCollected from "@/components/Layout/table/table_components/AmountCollected";
+import Table from "@/components/Layout/table/Table";
 
 type Props = {
     id: number;
 };
 
 const GroupBuyDetailClient = ({ id }: Props) => {
+    const router = useRouter();
+
     const {
         data: group,
         isLoading: groupLoading,
@@ -155,6 +159,51 @@ const GroupBuyDetailClient = ({ id }: Props) => {
                 >
                     {updating ? "Updating..." : "Update Status"}
                 </button>
+            </div>
+
+            {/* Orders List */}
+            <div className="flex flex-col gap-4">
+                <h2 className="text-lg font-semibold">Orders</h2>
+                <Table
+                    columns={[
+                        { key: "customer", label: "Customer" },
+                        { key: "order_id", label: "Order ID" },
+                        { key: "quantity", label: "Quantity" },
+                        { key: "total_price", label: "Total Price" },
+                        { key: "location", label: "Location" },
+                        { key: "status", label: "Status" },
+                        { key: "date", label: "Date" },
+                    ]}
+                >
+                    {orders?.results.map((order) => (
+                        <tr
+                            key={order.id}
+                            className="cursor-pointer hover:bg-gray-50"
+                            onClick={() =>
+                                router.push(
+                                    `/group_buys/${id}/orders/${order.id}`,
+                                )
+                            }
+                        >
+                            <td>
+                                {order.user.first_name} {order.user.last_name}
+                            </td>
+                            <td>{order.order_id}</td>
+                            <td>{order.quantity}</td>
+                            <td>₦{order.total_price}</td>
+                            <td>
+                                {order.pickup_location.state},{" "}
+                                {order.pickup_location.public_address}
+                            </td>
+                            <td>{order.general_order_status ?? "Pending"}</td>
+                            <td>
+                                {new Date(
+                                    order.created_at,
+                                ).toLocaleDateString()}
+                            </td>
+                        </tr>
+                    ))}
+                </Table>
             </div>
         </section>
     );
