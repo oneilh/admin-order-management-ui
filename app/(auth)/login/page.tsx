@@ -1,9 +1,20 @@
 "use client";
 
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { isAuthenticated } from "@/utils/auth";
 import { setTokens } from "@/utils/auth";
 import { useState } from "react";
 
 export default function Page() {
+    const router = useRouter();
+
+    useEffect(() => {
+        if (isAuthenticated()) {
+            router.replace("/single_buys");
+        }
+    }, [router]);
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 

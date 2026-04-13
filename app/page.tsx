@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function Home() {
-  redirect("/single-buys");
+  redirect("/single_buys");
 }
