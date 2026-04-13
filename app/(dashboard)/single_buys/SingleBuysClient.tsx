@@ -1,11 +1,13 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, InfiniteData } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { fetchSingleBuys } from "@/utils/fetchBuys";
+import { PaginatedResponse } from "@/Types/common";
 import { singleBuyCols } from "@/data/singleBuy_prod_and_users_columns";
 import Table from "@/components/Layout/table/Table";
 import Image from "next/image";
+import { SingleBuyType } from "@/Types/singleOrder";
 
 // status style
 const statusStyles: Record<string, string> = {
@@ -20,9 +22,28 @@ const statusStyles: Record<string, string> = {
 };
 
 const SingleBuysClient = () => {
-    const { data, isLoading, error } = useQuery({
+    const {
+        data,
+        isLoading,
+        error,
+        fetchNextPage,
+        hasNextPage,
+        isFetchingNextPage,
+    } = useInfiniteQuery<
+        PaginatedResponse<SingleBuyType>, // API response per page
+        Error, // error type
+        InfiniteData<PaginatedResponse<SingleBuyType>>, // final data shape
+        string[], // query key type
+        string | null // pageParam type
+    >({
         queryKey: ["singleBuys"], // Key for caching and refetching
-        queryFn: fetchSingleBuys, // function to call
+        queryFn: ({ pageParam }) => fetchSingleBuys(pageParam as string | null), // function to call
+        initialPageParam: null, // start with no cursor
+        getNextPageParam: (lastPage) => {
+            if (!lastPage.next) return undefined; // no more pages
+            const url = new URL(lastPage.next);
+            return url.searchParams.get("cursor"); // extract cursor for next page
+        },
     });
 
     const router = useRouter();
@@ -38,65 +59,80 @@ const SingleBuysClient = () => {
                 </p>
             </div>
             <Table columns={singleBuyCols}>
-                {data?.results.map((order) => (
-                    <tr
-                        key={order.id}
-                        className="cursor-pointer hover:bg-gray-50"
-                        onClick={() => router.push(`/single_buys/${order.id}`)}
-                    >
-                        {/* Product: image + name */}
-                        <td>
-                            <div className="flex items-center gap-3">
-                                <Image
-                                    src={order.product.image}
-                                    alt={order.product.name}
-                                    width={40}
-                                    height={40}
-                                    className="rounded object-cover"
-                                />
-                                <span>{order.product.name}</span>
-                            </div>
-                        </td>
+                {data?.pages
+                    .flatMap((page) => page.results)
+                    .map((order) => (
+                        <tr
+                            key={order.id}
+                            className="cursor-pointer hover:bg-gray-50"
+                            onClick={() =>
+                                router.push(`/single_buys/${order.id}`)
+                            }
+                        >
+                            {/* Product: image + name */}
+                            <td>
+                                <div className="flex items-center gap-3">
+                                    <Image
+                                        src={order.product.image}
+                                        alt={order.product.name}
+                                        width={40}
+                                        height={40}
+                                        className="rounded object-cover"
+                                    />
+                                    <span>{order.product.name}</span>
+                                </div>
+                            </td>
 
-                        {/* Customer */}
-                        <td>
-                            {order.user.first_name} {order.user.last_name}
-                        </td>
+                            {/* Customer */}
+                            <td>
+                                {order.user.first_name} {order.user.last_name}
+                            </td>
 
-                        {/* Order Id */}
-                        <td>{order.order_id}</td>
+                            {/* Order Id */}
+                            <td>{order.order_id}</td>
 
-                        {/* Quantity */}
-                        <td>{order.quantity}</td>
+                            {/* Quantity */}
+                            <td>{order.quantity}</td>
 
-                        {/* Total Price */}
-                        <td>₦{order.total_price}</td>
+                            {/* Total Price */}
+                            <td>₦{order.total_price}</td>
 
-                        {/* Status */}
-                        <td>
-                            <span
-                                className={`
+                            {/* Status */}
+                            <td>
+                                <span
+                                    className={`
                 px-2 py-1 rounded-full text-xs font-semibold
                 ${statusStyles[order.single_buy_status] ?? "bg-gray-100 text-gray-700"}
               `}
-                            >
-                                {order.single_buy_status}
-                            </span>
-                        </td>
+                                >
+                                    {order.single_buy_status}
+                                </span>
+                            </td>
 
-                        {/* Location */}
-                        <td>
-                            {order.pickup_location.state},{" "}
-                            {order.pickup_location.public_address}
-                        </td>
+                            {/* Location */}
+                            <td>
+                                {order.pickup_location.state},{" "}
+                                {order.pickup_location.public_address}
+                            </td>
 
-                        {/* Date */}
-                        <td>
-                            {new Date(order.created_at).toLocaleDateString()}
-                        </td>
-                    </tr>
-                ))}
+                            {/* Date */}
+                            <td>
+                                {new Date(
+                                    order.created_at,
+                                ).toLocaleDateString()}
+                            </td>
+                        </tr>
+                    ))}
             </Table>
+            {hasNextPage && (
+                <button
+                    onClick={() => fetchNextPage()}
+                    disabled={isFetchingNextPage}
+                    className="mt-4 px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50"
+                >
+                    {isFetchingNextPage ? "Loading more..." : "Load More"}
+                </button>
+            )}
         </section>
     );
 };
