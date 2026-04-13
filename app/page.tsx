@@ -1,9 +1,5 @@
-import SingleBuyPage from "./(dashboard)/single_buys/page";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return (
-    <>
-      <SingleBuyPage />
-    </>
-  );
+  redirect("/single-buys");
 }
