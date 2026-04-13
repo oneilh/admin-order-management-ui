@@ -16,9 +16,14 @@ export async function GET(req: NextRequest) {
         // Get query params from the URL (like ?type=ACTIVE)
         const { searchParams } = new URL(req.url);
         const type = searchParams.get("type") ?? "ACTIVE";
+        const cursor = searchParams.get("cursor");
+
+        const apiUrl = cursor
+            ? `${BASE_URL}/sub-admin/v1/single-buys/?type=${type}&cursor=${cursor}`
+            : `${BASE_URL}/sub-admin/v1/single-buys/?type=${type}`;
 
         const response = await fetch(
-            `${BASE_URL}/sub-admin/v1/single-buys/?type=${type}`,
+            apiUrl,
             {
                 headers: {
                     Authorization: authHeader,
