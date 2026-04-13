@@ -30,10 +30,11 @@ export const fetchGroupBuyOrders = async (
     return response.json();
 };
 
-export const fetchSingleBuys = async (): Promise<
+export const fetchSingleBuys = async (cursor?: string | null): Promise<
     PaginatedResponse<SingleBuyType>
 > => {
-    const response = await fetch("/api/single-buys", {
+	const url = cursor ? `/api/single-buys?cursor=${cursor}` : "/api/single-buys";
+    const response = await fetch(url, {
         headers: {
             Authorization: getAccessToken(),
         },
