@@ -42,7 +42,7 @@ export default function SingleBuyDetailClient({ id }: Props) {
         isLoading,
         error,
     } = useQuery({
-        queryKey: ["singleBuys"], // same key as list page — shares cache
+        queryKey: ["singleBuyDetails", id], // same key as list page — shares cache
         queryFn: () => fetchSingleBuys(), // same function as list page
         staleTime: 0,
         select: (data) => data.results.find((ord) => ord.id === id),
