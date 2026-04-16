@@ -1,12 +1,9 @@
 "use client";
 
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient, InfiniteData } from "@tanstack/react-query";
 import { fetchSingleBuys } from "@/utils/fetchBuys";
 import { getAccessToken } from "@/utils/auth";
-import {
-    SingleBuyType,
-    SingleBuyStatusAction,
-} from "@/Types/singleOrder";
+import { SingleBuyType, SingleBuyStatusAction } from "@/Types/singleOrder";
 import { PaginatedResponse } from "@/Types/common";
 import Image from "next/image";
 import { useState } from "react";
@@ -44,8 +41,18 @@ export default function SingleBuyDetailClient({ id }: Props) {
     } = useQuery({
         queryKey: ["singleBuyDetails", id], // same key as list page — shares cache
         queryFn: () => fetchSingleBuys(), // same function as list page
-        staleTime: 0,
-        select: (data) => data.results.find((ord) => ord.id === id),
+        staleTime: 5 * 60 * 1000, // 5 minutes
+        select: () => {
+            // First — search ALL cached pages from the infinite query
+            const infiniteCache = queryClient.getQueryData<
+                InfiniteData<PaginatedResponse<SingleBuyType>>
+            >(["singleBuys"]);
+            if (infiniteCache) {
+                return infiniteCache.pages
+                    .flatMap((page) => page.results)
+                    .find((ord) => ord.id === id);
+            }
+        },
     });
 
     if (isLoading) return <p>Loading...</p>;
@@ -72,7 +79,9 @@ export default function SingleBuyDetailClient({ id }: Props) {
             const data = await response.json();
 
             if (!response.ok) {
-                setUpdateError(data.msg || data.message || "Failed to update status");
+                setUpdateError(
+                    data.msg || data.message || "Failed to update status",
+                );
                 return;
             }
             setUpdateSuccess(true);
@@ -150,10 +159,12 @@ export default function SingleBuyDetailClient({ id }: Props) {
                 </div>
                 <div>
                     <p className="text-sm text-gray-500">Status</p>
-                    <p className={`
+                    <p
+                        className={`
                 px-2 py-1 rounded-full text-xs font-semibold
                 ${statusStyles[order.single_buy_status] ?? "bg-gray-100 text-gray-700"}
-              `}>
+              `}
+                    >
                         {order.single_buy_status}
                     </p>
                 </div>
