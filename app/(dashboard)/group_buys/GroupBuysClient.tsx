@@ -7,6 +7,7 @@ import { PaginatedResponse } from "@/Types/common";
 import { groupBuyCols } from "@/data/groupBuy_prod_and_users_columns";
 import GroupBuyRows from "./GroupBuyRows";
 import Table from "@/components/Layout/table/Table";
+import EmptyState from "@/components/EmptyState";
 
 const fetchGroupBuys = async (): Promise<PaginatedResponse<GroupBuy>> => {
     const response = await fetch("/api/group-buys?type=ACTIVE", {
@@ -30,9 +31,15 @@ export default function GroupBuysClient() {
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error loading single buys</p>;
 
+    const groupBuys = data?.results ?? [];
+
     return (
         <Table columns={groupBuyCols}>
-			<GroupBuyRows data={data?.results} />
-		</Table>
+            {groupBuys.length === 0 ? (
+                <EmptyState message="No active group buys found" />
+            ) : (
+                <GroupBuyRows data={groupBuys} />
+            )}
+        </Table>
     );
 }
