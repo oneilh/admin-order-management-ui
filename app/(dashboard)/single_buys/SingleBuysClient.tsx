@@ -8,6 +8,7 @@ import { singleBuyCols } from "@/data/singleBuy_prod_and_users_columns";
 import Table from "@/components/Layout/table/Table";
 import Image from "next/image";
 import { SingleBuyType } from "@/Types/singleOrder";
+import EmptyState from "@/components/EmptyState";
 
 // status style
 const statusStyles: Record<string, string> = {
@@ -50,6 +51,8 @@ const SingleBuysClient = () => {
 
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error Loading single buys...</p>;
+
+    const orders = data?.pages.flatMap((page) => page.results) ?? [];
     return (
         <section className="flex flex-col gap-6">
             <div>
@@ -59,9 +62,10 @@ const SingleBuysClient = () => {
                 </p>
             </div>
             <Table columns={singleBuyCols}>
-                {data?.pages
-                    .flatMap((page) => page.results)
-                    .map((order) => (
+                {orders.length === 0 ? (
+                    <EmptyState message="No Single buy orders found" />
+                ) : (
+                    orders.map((order) => (
                         <tr
                             key={order.id}
                             className="cursor-pointer hover:bg-gray-50"
@@ -122,7 +126,8 @@ const SingleBuysClient = () => {
                                 ).toLocaleDateString()}
                             </td>
                         </tr>
-                    ))}
+                    ))
+                )}
             </Table>
             {hasNextPage && (
                 <button
