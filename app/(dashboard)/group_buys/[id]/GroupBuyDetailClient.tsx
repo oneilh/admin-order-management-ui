@@ -14,6 +14,7 @@ import Progress from "@/components/Layout/table/table_components/Progress";
 import Badge from "@/components/Badge";
 import AmountCollected from "@/components/Layout/table/table_components/AmountCollected";
 import Table from "@/components/Layout/table/Table";
+import EmptyState from "@/components/EmptyState";
 
 type Props = {
     id: number;
@@ -105,6 +106,8 @@ const GroupBuyDetailClient = ({ id }: Props) => {
             setUpdating(false);
         }
     };
+
+    const groupBuyOrders = orders?.results ?? [];
     return (
         <section className="flex flex-col gap-6 mt-4">
             <Product id={group.id} product={group.product} />
@@ -175,34 +178,41 @@ const GroupBuyDetailClient = ({ id }: Props) => {
                         { key: "date", label: "Date" },
                     ]}
                 >
-                    {orders?.results.map((order) => (
-                        <tr
-                            key={order.id}
-                            className="cursor-pointer hover:bg-gray-50"
-                            onClick={() =>
-                                router.push(
-                                    `/group_buys/${id}/orders/${order.id}`,
-                                )
-                            }
-                        >
-                            <td>
-                                {order.user.first_name} {order.user.last_name}
-                            </td>
-                            <td>{order.order_id}</td>
-                            <td>{order.quantity}</td>
-                            <td>₦{order.total_price}</td>
-                            <td>
-                                {order.pickup_location.state},{" "}
-                                {order.pickup_location.public_address}
-                            </td>
-                            <td>{order.general_order_status ?? "Pending"}</td>
-                            <td>
-                                {new Date(
-                                    order.created_at,
-                                ).toLocaleDateString()}
-                            </td>
-                        </tr>
-                    ))}
+                    {groupBuyOrders.length === 0 ? (
+                        <EmptyState message="No Group Buy Order Found" />
+                    ) : (
+                        groupBuyOrders.map((order) => (
+                            <tr
+                                key={order.id}
+                                className="cursor-pointer hover:bg-gray-50"
+                                onClick={() =>
+                                    router.push(
+                                        `/group_buys/${id}/orders/${order.id}`,
+                                    )
+                                }
+                            >
+                                <td>
+                                    {order.user.first_name}{" "}
+                                    {order.user.last_name}
+                                </td>
+                                <td>{order.order_id}</td>
+                                <td>{order.quantity}</td>
+                                <td>₦{order.total_price}</td>
+                                <td>
+                                    {order.pickup_location.state},{" "}
+                                    {order.pickup_location.public_address}
+                                </td>
+                                <td>
+                                    {order.general_order_status ?? "Pending"}
+                                </td>
+                                <td>
+                                    {new Date(
+                                        order.created_at,
+                                    ).toLocaleDateString()}
+                                </td>
+                            </tr>
+                        ))
+                    )}
                 </Table>
             </div>
         </section>
