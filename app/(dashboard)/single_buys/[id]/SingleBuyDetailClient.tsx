@@ -2,7 +2,7 @@
 
 import { useQuery, useQueryClient, InfiniteData } from "@tanstack/react-query";
 import { fetchSingleBuys } from "@/utils/fetchBuys";
-import { getAccessToken } from "@/utils/auth";
+import { authFetch } from "@/utils/auth";
 import { SingleBuyType, SingleBuyStatusAction } from "@/Types/singleOrder";
 import { PaginatedResponse } from "@/Types/common";
 import Image from "next/image";
@@ -67,11 +67,10 @@ export default function SingleBuyDetailClient({ id }: Props) {
         setUpdateSuccess(false);
 
         try {
-            const response = await fetch("/api/update-single-buy-status", {
+            const response = await authFetch("/api/update-single-buy-status", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: getAccessToken(),
                 },
                 body: JSON.stringify({ id: order.id, action: selectedAction }),
             });

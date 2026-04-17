@@ -7,7 +7,7 @@ import {
     GroupBuyOrderStatusAction,
     GroupBuyOrderType,
 } from "@/Types/groupBuyOrder";
-import { getAccessToken } from "@/utils/auth";
+import { authFetch } from "@/utils/auth";
 import { PaginatedResponse } from "@/Types/common";
 
 type Props = {
@@ -42,11 +42,10 @@ const GroupBuyOrderDetailClient = ({ id, orderId }: Props) => {
         setUpdateSuccess(false);
 
         try {
-            const response = await fetch("/api/update-group-buy-order-status", {
+            const response = await authFetch("/api/update-group-buy-order-status", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: getAccessToken(),
                 },
                 body: JSON.stringify({
                     id: order?.id,

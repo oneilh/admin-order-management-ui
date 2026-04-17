@@ -7,7 +7,7 @@ import { fetchGroupBuyOrders, fetchGroupBuys } from "@/utils/fetchBuys";
 import { GroupBuyStatusAction } from "@/Types/groupBuy";
 import { PaginatedResponse } from "@/Types/common";
 import { GroupBuy } from "@/Types/groupBuy";
-import { getAccessToken } from "@/utils/auth";
+import { authFetch } from "@/utils/auth";
 import Product from "@/components/Layout/table/table_components/Product";
 import Timeline from "@/components/Layout/table/table_components/Timeline";
 import Progress from "@/components/Layout/table/table_components/Progress";
@@ -64,11 +64,10 @@ const GroupBuyDetailClient = ({ id }: Props) => {
         setUpdateSuccess(false);
 
         try {
-            const response = await fetch("/api/update-group-buy-status", {
+            const response = await authFetch("/api/update-group-buy-status", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: getAccessToken(),
                 },
                 body: JSON.stringify({
                     id: group.id,
